@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Mapping\" />
-    <Folder Include="UseCases\Departments\Queries\GetDepartment\" />
-    <Folder Include="UseCases\Departments\Queries\GetDepartments\" />
     <Folder Include="UseCases\Employees\" />
     <Folder Include="UseCases\Positions\Commands\" />
     <Folder Include="UseCases\Positions\Queries\" />

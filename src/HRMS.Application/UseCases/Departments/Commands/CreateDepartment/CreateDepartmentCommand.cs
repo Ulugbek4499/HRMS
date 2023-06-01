@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Domain.Entities.Departments;
-using HRMS.Domain.Entities.Positions;
 using MediatR;
 
 namespace HRMS.Application.UseCases.Departments.Commands.CreateDepartment
@@ -47,9 +42,12 @@ namespace HRMS.Application.UseCases.Departments.Commands.CreateDepartment
             return _mapper.Map<DepartmentDto>(maybeDepartment);
         }
 
-        private void ValidateDepartmentIsNull(CreateDepartmentCommand request, Department? maybeDepartment)
+        private static void ValidateDepartmentIsNull(CreateDepartmentCommand request, Department? maybeDepartment)
         {
-            throw new NotImplementedException();
+            if (maybeDepartment != null)
+            {
+                throw new AlreadyExistsException(nameof(Department), request.Name);
+            }
         }
     }
 }
