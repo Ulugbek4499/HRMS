@@ -37,7 +37,7 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.UpdateTimeSheet
             TimeSheet maybeTimeSheet = await
                 _context.TimeSheets.FindAsync(new object[] { request.Id });
 
-            ValidateTimeSheetDtoIsNotNull(request, maybeTimeSheet);
+            ValidateTimeSheetIsNotNull(request, maybeTimeSheet);
 
             Employee maybeEmployee = _context.Employees
                 .SingleOrDefault(p => p.Id.Equals(request.EmployeeId));
@@ -61,7 +61,7 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.UpdateTimeSheet
             }
         }
 
-        private static void ValidateTimeSheetDtoIsNotNull(UpdateTimeSheetCommand request, TimeSheet maybeTimeSheet)
+        private static void ValidateTimeSheetIsNotNull(UpdateTimeSheetCommand request, TimeSheet maybeTimeSheet)
         {
             if (maybeTimeSheet == null)
             {

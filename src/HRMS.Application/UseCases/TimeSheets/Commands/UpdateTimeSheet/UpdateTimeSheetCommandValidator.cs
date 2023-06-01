@@ -1,4 +1,9 @@
-﻿using FluentValidation;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using FluentValidation;
 
 namespace HRMS.Application.UseCases.TimeSheets.Commands.UpdateTimeSheet
 {
@@ -19,6 +24,7 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.UpdateTimeSheet
 
             RuleFor(t => t.WorkingDay).NotEqual((DateTimeOffset)default)
                 .WithMessage("Working date is required.");
+
         }
     }
 }
