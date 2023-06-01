@@ -11,7 +11,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
+    <Folder Include="Common\Mapping\" />
+    <Folder Include="UseCases\Departments\Queries\GetDepartment\" />
+    <Folder Include="UseCases\Departments\Queries\GetDepartments\" />
+    <Folder Include="UseCases\Employees\" />
+    <Folder Include="UseCases\Positions\Commands\" />
+    <Folder Include="UseCases\Positions\Queries\" />
+    <Folder Include="UseCases\TimeSheets\" />
+    <Folder Include="UseCases\Salaries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.PostgreSQL" Version="2.3.0" />
+    <PackageReference Include="Serilog.Sinks.PostgreSQL.Configuration" Version="1.0.1" />
+    <PackageReference Include="Serilog.Sinks.Telegram.Alternative" Version="1.3.0" />
   </ItemGroup>
 
 </Project>
