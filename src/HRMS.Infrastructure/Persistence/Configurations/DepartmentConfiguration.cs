@@ -8,7 +8,7 @@ namespace HRMS.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
-            throw new NotImplementedException();
+            builder.Navigation(o => o.Positions).AutoInclude();
         }
     }
 }

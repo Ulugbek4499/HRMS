@@ -13,7 +13,7 @@ namespace HRMS.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<TimeSheet> builder)
         {
-            throw new NotImplementedException();
+            builder.Navigation(tsh => tsh.Employee).AutoInclude();
         }
     }
 }

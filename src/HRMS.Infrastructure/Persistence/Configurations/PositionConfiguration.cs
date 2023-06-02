@@ -13,7 +13,9 @@ namespace HRMS.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Position> builder)
         {
-            throw new NotImplementedException();
+            builder.Navigation(p => p.Employees).AutoInclude();
+            builder.Navigation(p=>p.Department).AutoInclude();
+            builder.Navigation(p=>p.Salary).AutoInclude();
         }
     }
 }
