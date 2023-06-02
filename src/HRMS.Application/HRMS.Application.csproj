@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Positions\Commands\DeletePosition\" />
-    <Folder Include="UseCases\Positions\Commands\UpdatePosition\" />
     <Folder Include="UseCases\Positions\Queries\" />
   </ItemGroup>
 

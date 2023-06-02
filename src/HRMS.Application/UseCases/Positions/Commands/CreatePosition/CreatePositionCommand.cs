@@ -8,6 +8,7 @@ using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Positions.Models;
 using HRMS.Domain.Entities.Departments;
 using HRMS.Domain.Entities.Employees;
+using HRMS.Domain.Entities.Positions;
 using HRMS.Domain.Entities.Salaries;
 using MediatR;
 
@@ -31,7 +32,34 @@ namespace HRMS.Application.UseCases.Positions.Commands.CreatePosition
             _mapper = mapper;
         }
 
-        public Task<PositionDto> Handle(CreatePositionCommand request, CancellationToken cancellationToken)
+        public async Task<PositionDto> Handle(CreatePositionCommand request, CancellationToken cancellationToken)
+        {
+            Salary maybeSalary = await
+               _context.Salaries.FindAsync(new object[] { request.SalaryId });
+            
+            ValidateSalaryIsNotNull(request, maybeSalary);
+
+            Department maybeDepartment=await
+                _context.Departments.FindAsync(new object[] { request.DepartmentId });
+
+            ValidateDepartmentIsNotNull(request, maybeDepartment);
+
+            var position = new Position()
+            {
+                Name = request.Name,
+                Salary = maybeSalary;
+                De
+            }
+
+
+        }
+
+        private void ValidateDepartmentIsNotNull(CreatePositionCommand request, Department? maybeDepartment)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ValidateSalaryIsNotNull(CreatePositionCommand request, Salary? maybeSalary)
         {
             throw new NotImplementedException();
         }
