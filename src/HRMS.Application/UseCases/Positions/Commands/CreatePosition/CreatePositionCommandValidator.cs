@@ -22,7 +22,6 @@ namespace HRMS.Application.UseCases.Positions.Commands.CreatePosition
             RuleFor(t => t.DepartmentId).NotEmpty()
                .NotEqual((Guid)default)
                .WithMessage("Department id is required.");
-
         }
     }
 }

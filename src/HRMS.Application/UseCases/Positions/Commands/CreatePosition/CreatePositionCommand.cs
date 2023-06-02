@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Positions.Models;
 using HRMS.Domain.Entities.Departments;
@@ -47,21 +48,30 @@ namespace HRMS.Application.UseCases.Positions.Commands.CreatePosition
             var position = new Position()
             {
                 Name = request.Name,
-                Salary = maybeSalary;
-                De
-            }
+                Salary = maybeSalary,
+                Department = maybeDepartment
+            };
 
+            position = _context.Positions.Add(position).Entity;
+            await _context.SaveChangesAsync(cancellationToken);
 
+            return _mapper.Map<PositionDto>(position);
         }
 
         private void ValidateDepartmentIsNotNull(CreatePositionCommand request, Department? maybeDepartment)
         {
-            throw new NotImplementedException();
+            if (maybeDepartment is null)
+            {
+                throw new NotFoundException(nameof(Department), request.DepartmentId);
+            }
         }
 
         private void ValidateSalaryIsNotNull(CreatePositionCommand request, Salary? maybeSalary)
         {
-            throw new NotImplementedException();
+            if (maybeSalary is null)
+            {
+                throw new NotFoundException(nameof(Salary), request.SalaryId);
+            }
         }
     }
 }
