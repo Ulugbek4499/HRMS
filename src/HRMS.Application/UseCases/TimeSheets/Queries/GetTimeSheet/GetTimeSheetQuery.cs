@@ -4,7 +4,6 @@ using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Application.UseCases.TimeSheets.Models;
 using HRMS.Domain.Entities.Departments;
-using HRMS.Domain.Entities.Salaries;
 using HRMS.Domain.Entities.TimeSheets;
 using MediatR;
 
@@ -38,7 +37,7 @@ namespace HRMS.Application.UseCases.TimeSheets.Queries.GetTimeSheet
         {
             if (maybetimeSheet == null)
             {
-                throw new NotFoundException(nameof(Salary), request.timeSheetId);
+                throw new NotFoundException(nameof(TimeSheet), request.timeSheetId);
             }
         }
     }

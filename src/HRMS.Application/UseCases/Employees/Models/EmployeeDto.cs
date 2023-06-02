@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HRMS.Application.UseCases.Employees.Models
 {
-    internal class EmployeeDto
+    public class EmployeeDto
     {
     }
 }

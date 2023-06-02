@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -11,12 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Mapping\" />
-    <Folder Include="UseCases\Employees\" />
+    <Folder Include="UseCases\Employees\Commands\CreateEmployee\" />
+    <Folder Include="UseCases\Employees\Commands\DeleteEmployee\" />
+    <Folder Include="UseCases\Employees\Commands\UpdateEmployee\" />
     <Folder Include="UseCases\Positions\Commands\" />
     <Folder Include="UseCases\Positions\Queries\" />
-    <Folder Include="UseCases\TimeSheets\" />
-    <Folder Include="UseCases\Salaries\" />
   </ItemGroup>
 
   <ItemGroup>

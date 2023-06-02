@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HRMS.Application.UseCases.Employees.Queries.GetEmployees
 {
-    internal class GetEmployeesQuery
+    public class GetEmployeesQuery
     {
     }
 }

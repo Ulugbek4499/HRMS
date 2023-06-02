@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Domain.Entities.Departments;
@@ -12,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HRMS.Application.UseCases.Departments.Queries.GetDepartments
 {
-    public record GetDepartmentsQuery:IRequest<DepartmentDto>;
+    public record GetDepartmentsQuery : IRequest<DepartmentDto[]>;
 
     public class GetDepartmentsQueryHandler : IRequestHandler<GetDepartmentsQuery, DepartmentDto[]>
     {
