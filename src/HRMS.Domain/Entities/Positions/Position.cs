@@ -13,6 +13,8 @@ namespace HRMS.Domain.Entities.Positions
     public class Position: BaseAuditableEntity
     {
         public string Name { get; set; }
+
+        public Guid SalaryId { get; set; } 
         public Salary Salary { get; set; }
 
         public Guid DepartmentId { get; set; }

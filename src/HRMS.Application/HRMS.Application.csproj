@@ -11,10 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Employees\Commands\CreateEmployee\" />
-    <Folder Include="UseCases\Employees\Commands\DeleteEmployee\" />
-    <Folder Include="UseCases\Employees\Commands\UpdateEmployee\" />
-    <Folder Include="UseCases\Positions\Commands\" />
+    <Folder Include="UseCases\Positions\Commands\DeletePosition\" />
+    <Folder Include="UseCases\Positions\Commands\UpdatePosition\" />
     <Folder Include="UseCases\Positions\Queries\" />
   </ItemGroup>
 

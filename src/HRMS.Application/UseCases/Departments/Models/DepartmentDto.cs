@@ -8,7 +8,6 @@ namespace HRMS.Application.UseCases.Departments.Models
         [JsonPropertyName("department_id")]
         public Guid Id { get; set; }
         public string Name { get; set; }
-
         public ICollection<PositionDto> Positions { get; set; }
     }
 }
