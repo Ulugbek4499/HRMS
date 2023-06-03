@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.Api.Controllers
@@ -7,5 +8,7 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class ApiControllerBase : ControllerBase
     {
+        private IMediator? _mediator;
+        public IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
     }
 }
