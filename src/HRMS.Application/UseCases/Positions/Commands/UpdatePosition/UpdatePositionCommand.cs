@@ -4,16 +4,16 @@ using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Positions.Models;
 using HRMS.Domain.Entities.Departments;
 using HRMS.Domain.Entities.Positions;
-using HRMS.Domain.Entities.Salaries;
 using MediatR;
 
 namespace HRMS.Application.UseCases.Positions.Commands.UpdatePosition
 {
-    public class UpdatePositionCommand:IRequest<PositionDto>
+    public class UpdatePositionCommand : IRequest<PositionDto>
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid SalaryId { get; set; }
+        public decimal Salary { get; set; }
+        public int MonthlyWorkingHours { get; set; }
         public Guid DepartmentId { get; set; }
     }
 
@@ -21,7 +21,7 @@ namespace HRMS.Application.UseCases.Positions.Commands.UpdatePosition
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
-      
+
         public UpdatePositionCommandHandle(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
@@ -35,19 +35,15 @@ namespace HRMS.Application.UseCases.Positions.Commands.UpdatePosition
 
             ValidatePositionIsNotNull(request, maybePosition);
 
-            Salary maybeSalary = await
-                _context.Salaries.FindAsync(new object[] { request.SalaryId });
-
-            ValidateSalaryIsNotNull(request, maybeSalary);
-
             Department maybeDepartment = await
              _context.Departments.FindAsync(new object[] { request.DepartmentId });
-           
+
             ValidateDepartmentIsNotNull(request, maybeDepartment);
 
             maybePosition.Name = request.Name;
             maybePosition.Department = maybeDepartment;
-            maybePosition.Salary = maybeSalary;
+            maybePosition.Salar = request.Salary;
+            maybePosition.MonthlyWorkingHours = request.MonthlyWorkingHours;
 
             await _context.SaveChangesAsync(cancellationToken);
 

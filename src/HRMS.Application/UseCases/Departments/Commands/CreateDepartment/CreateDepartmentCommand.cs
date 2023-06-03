@@ -7,7 +7,7 @@ using MediatR;
 
 namespace HRMS.Application.UseCases.Departments.Commands.CreateDepartment
 {
-    public class CreateDepartmentCommand:IRequest<DepartmentDto>
+    public class CreateDepartmentCommand : IRequest<DepartmentDto>
     {
         public string Name { get; set; }
     }
@@ -30,9 +30,9 @@ namespace HRMS.Application.UseCases.Departments.Commands.CreateDepartment
 
             ValidateDepartmentIsNull(request, maybeDepartment);
 
-            var department=new Department()
+            var department = new Department()
             {
-                Name=request.Name,
+                Name = request.Name,
             };
 
             maybeDepartment = _context.Departments.Add(department).Entity;

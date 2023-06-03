@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
-using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Application.UseCases.TimeSheets.Models;
-using HRMS.Domain.Entities.Departments;
 using HRMS.Domain.Entities.TimeSheets;
 using MediatR;
 
@@ -18,10 +16,10 @@ namespace HRMS.Application.UseCases.TimeSheets.Queries.GetTimeSheet
         public GetTimeSheetQueryHandler(
            IApplicationDbContext context,
            IMapper mapper)
-             {
+        {
             _context = context;
             _mapper = mapper;
-             }
+        }
         public async Task<TimeSheetDto> Handle(GetTimeSheetQuery request, CancellationToken cancellationToken)
         {
 

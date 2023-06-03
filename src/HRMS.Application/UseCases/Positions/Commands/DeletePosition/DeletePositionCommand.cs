@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Positions.Models;
-using HRMS.Application.UseCases.Salaries.Commands.DeleteSalary;
-using HRMS.Application.UseCases.Salaries.Models;
 using HRMS.Domain.Entities.Positions;
-using HRMS.Domain.Entities.Salaries;
 using MediatR;
 
 namespace HRMS.Application.UseCases.Positions.Commands.DeletePosition

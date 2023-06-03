@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Employees.Models;
@@ -12,7 +7,7 @@ using MediatR;
 
 namespace HRMS.Application.UseCases.Employees.Queries.GetEmployee
 {
-    public record GetEmployeeQuery(Guid employeeId):IRequest<EmployeeDto>;
+    public record GetEmployeeQuery(Guid employeeId) : IRequest<EmployeeDto>;
 
     public class GetEmployeeQueryHandler : IRequestHandler<GetEmployeeQuery, EmployeeDto>
     {

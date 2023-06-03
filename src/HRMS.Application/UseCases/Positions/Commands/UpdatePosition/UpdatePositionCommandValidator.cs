@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace HRMS.Application.UseCases.Positions.Commands.UpdatePosition
 {
-    public class UpdatePositionCommandValidator:AbstractValidator<UpdatePositionCommand>
+    public class UpdatePositionCommandValidator : AbstractValidator<UpdatePositionCommand>
     {
         public UpdatePositionCommandValidator()
         {
@@ -19,9 +14,12 @@ namespace HRMS.Application.UseCases.Positions.Commands.UpdatePosition
                 .NotEqual((Guid)default)
                 .WithMessage("Department id is required.");
 
-            RuleFor(t => t.SalaryId).NotEmpty()
-                .NotEqual((Guid)default)
-                .WithMessage("Salary id is required.");
+
+            RuleFor(t => t.Salary).NotEqual((decimal)default)
+               .GreaterThan(0).WithMessage("Salary is required.");
+
+            RuleFor(t => t.MonthlyWorkingHours).NotEqual((int)default)
+             .GreaterThan(0).WithMessage("Monthly working hours is required.");
 
             RuleFor(p => p.Name)
                .NotEmpty()

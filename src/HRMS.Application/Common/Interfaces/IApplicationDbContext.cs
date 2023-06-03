@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HRMS.Domain.Entities.Departments;
+﻿using HRMS.Domain.Entities.Departments;
 using HRMS.Domain.Entities.Employees;
 using HRMS.Domain.Entities.Positions;
-using HRMS.Domain.Entities.Salaries;
 using HRMS.Domain.Entities.TimeSheets;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,5 +15,6 @@ namespace HRMS.Application.Common.Interfaces
         public DbSet<TimeSheet> TimeSheets { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        IQueryable<T> GetByIds<T>(IEnumerable<Guid> ids) where T : class;
     }
 }

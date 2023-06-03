@@ -10,7 +10,7 @@ namespace HRMS.Application.Common.Models
 
         public Response()
         {
-            
+
         }
 
         public Response(T result)

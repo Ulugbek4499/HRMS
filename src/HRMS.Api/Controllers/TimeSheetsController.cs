@@ -12,25 +12,25 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class TimeSheetsController : ApiControllerBase
     {
-        [HttpPost]
+        [HttpPost("[action]")]
         public async ValueTask<ActionResult<TimeSheetDto>> PostTimeSheetAsync(CreateTimeSheetCommand command)
         {
             return await Mediator.Send(command);
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async ValueTask<ActionResult<TimeSheetDto>> GetTimeSheetAsync(Guid TimeSheetId)
         {
             return await Mediator.Send(new GetTimeSheetQuery(TimeSheetId));
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async ValueTask<ActionResult<TimeSheetDto[]>> GetAllTimeSheet()
         {
             return await Mediator.Send(new GetTimeSheetsQuery());
         }
 
-        [HttpPut]
+        [HttpPut("[action]")]
         public async ValueTask<ActionResult<TimeSheetDto>> UpdateTimeSheetAsync(Guid TimeSheetId, UpdateTimeSheetCommand command)
         {
             if (TimeSheetId == null)
@@ -41,7 +41,7 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(command);
         }
 
-        [HttpDelete]
+        [HttpDelete("[action]")]
         public async ValueTask<ActionResult<TimeSheetDto>> DeleteTimeSheetAsync(Guid TimeSheetId)
         {
             return await Mediator.Send(new DeleteTimeSheetCommand(TimeSheetId));

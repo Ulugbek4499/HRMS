@@ -12,25 +12,25 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class EmployeesController : ApiControllerBase
     {
-        [HttpPost]
+        [HttpPost("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> PostEmployeeAsync(CreateEmployeeCommand command)
         {
             return await Mediator.Send(command);
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> GetEmployeeAsync(Guid EmployeeId)
         {
             return await Mediator.Send(new GetEmployeeQuery(EmployeeId));
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async ValueTask<ActionResult<EmployeeDto[]>> GetAllEmployee()
         {
             return await Mediator.Send(new GetEmployeesQuery());
         }
 
-        [HttpPut]
+        [HttpPut("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync(Guid EmployeeId, UpdateEmployeeCommand command)
         {
             if (EmployeeId == null)
@@ -41,7 +41,7 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(command);
         }
 
-        [HttpDelete]
+        [HttpDelete("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> DeleteEmployeeAsync(Guid EmployeeId)
         {
             return await Mediator.Send(new DeleteEmployeeCommand(EmployeeId));

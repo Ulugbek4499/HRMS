@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HRMS.Application.Common.Interfaces;
-using HRMS.Infrastructure.Persistence.Interceptors;
+﻿using HRMS.Application.Common.Interfaces;
 using HRMS.Infrastructure.Persistence;
+using HRMS.Infrastructure.Persistence.Interceptors;
 using HRMS.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

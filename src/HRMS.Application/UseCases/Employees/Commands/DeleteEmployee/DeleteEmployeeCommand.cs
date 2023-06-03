@@ -7,7 +7,7 @@ using MediatR;
 
 namespace HRMS.Application.UseCases.Employees.Commands.DeleteEmployee
 {
-    public record DeleteEmployeeCommand(Guid emploeeId):IRequest<EmployeeDto>;
+    public record DeleteEmployeeCommand(Guid emploeeId) : IRequest<EmployeeDto>;
 
     public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand, EmployeeDto>
     {

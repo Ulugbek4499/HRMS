@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
 {
-    public class UpdateEmployeeCommandValidator:AbstractValidator<UpdateEmployeeCommand>
+    public class UpdateEmployeeCommandValidator : AbstractValidator<UpdateEmployeeCommand>
     {
         public UpdateEmployeeCommandValidator()
         {
@@ -18,7 +13,7 @@ namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
             RuleFor(t => t.PositionId).NotEmpty()
                 .NotEqual((Guid)default)
                 .WithMessage("Position id is required.");
-          
+
             RuleFor(p => p.FirstName)
                 .NotEmpty()
                 .MaximumLength(50)

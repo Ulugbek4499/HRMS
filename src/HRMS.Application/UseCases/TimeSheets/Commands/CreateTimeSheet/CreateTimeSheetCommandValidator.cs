@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace HRMS.Application.UseCases.TimeSheets.Commands.CreateTimeSheet
 {
-    public class CreateTimeSheetCommandValidator:AbstractValidator<CreateTimeSheetCommand>
+    public class CreateTimeSheetCommandValidator : AbstractValidator<CreateTimeSheetCommand>
     {
         public CreateTimeSheetCommandValidator()
         {

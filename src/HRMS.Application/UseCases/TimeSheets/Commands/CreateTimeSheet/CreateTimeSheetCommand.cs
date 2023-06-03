@@ -13,7 +13,6 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.CreateTimeSheet
         public double WorkedHours { get; set; }
         public DateTimeOffset WorkingDay { get; set; }
         public Guid EmployeeId { get; set; }
-        //public Employee Employee { get; set; }
     }
 
     public class CreateTimeSheetCommandHandler : IRequestHandler<CreateTimeSheetCommand, TimeSheetDto>

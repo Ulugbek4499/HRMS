@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.TimeSheets.Models;
@@ -13,7 +8,7 @@ using MediatR;
 
 namespace HRMS.Application.UseCases.TimeSheets.Commands.UpdateTimeSheet
 {
-    public class UpdateTimeSheetCommand:IRequest<TimeSheetDto>
+    public class UpdateTimeSheetCommand : IRequest<TimeSheetDto>
     {
         public Guid Id { get; set; }
         public Guid EmployeeId { get; set; }
@@ -44,8 +39,8 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.UpdateTimeSheet
 
             ValidateEmployeeAreNotNull(request, maybeEmployee);
 
-            maybeTimeSheet.WorkedHours=request.WorkedHours;
-            maybeTimeSheet.WorkingDay=request.WorkingDay;
+            maybeTimeSheet.WorkedHours = request.WorkedHours;
+            maybeTimeSheet.WorkingDay = request.WorkingDay;
             maybeTimeSheet.Employee = maybeEmployee;
 
             await _context.SaveChangesAsync(cancellationToken);

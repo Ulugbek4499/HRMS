@@ -1,10 +1,4 @@
-﻿using HRMS.Application.UseCases.Salaries.Commands.CreateSalary;
-using HRMS.Application.UseCases.Salaries.Commands.DeleteSalary;
-using HRMS.Application.UseCases.Salaries.Commands.UpdateSalary;
-using HRMS.Application.UseCases.Salaries.Models;
-using HRMS.Application.UseCases.Salaries.Queries.GetSalaries;
-using HRMS.Application.UseCases.Salaries.Queries.GetSalary;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.Api.Controllers
 {
@@ -12,25 +6,25 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class SalariesController : ApiControllerBase
     {
-        [HttpPost]
+        [HttpPost("[action]")]
         public async ValueTask<ActionResult<SalaryDto>> PostSalaryAsync(CreateSalaryCommand command)
         {
             return await Mediator.Send(command);
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async ValueTask<ActionResult<SalaryDto>> GetSalaryAsync(Guid SalaryId)
         {
             return await Mediator.Send(new GetSalaryQuery(SalaryId));
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async ValueTask<ActionResult<SalaryDto[]>> GetAllSalary()
         {
             return await Mediator.Send(new GetSalariesQuery());
         }
 
-        [HttpPut]
+        [HttpPut("[action]")]
         public async ValueTask<ActionResult<SalaryDto>> UpdateSalaryAsync(Guid SalaryId, UpdateSalaryCommand command)
         {
             if (SalaryId == null)
@@ -41,7 +35,7 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(command);
         }
 
-        [HttpDelete]
+        [HttpDelete("[action]")]
         public async ValueTask<ActionResult<SalaryDto>> DeleteSalaryAsync(Guid SalaryId)
         {
             return await Mediator.Send(new DeleteSalaryCommand(SalaryId));

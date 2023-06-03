@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace HRMS.Application.UseCases.Positions.Commands.CreatePosition
 {
-    public class CreatePositionCommandValidator:AbstractValidator<CreatePositionCommand>
+    public class CreatePositionCommandValidator : AbstractValidator<CreatePositionCommand>
     {
         public CreatePositionCommandValidator()
         {
@@ -15,9 +10,11 @@ namespace HRMS.Application.UseCases.Positions.Commands.CreatePosition
                 .MaximumLength(50)
                 .WithMessage("Position name is required");
 
-            RuleFor(t => t.SalaryId).NotEmpty()
-              .NotEqual((Guid)default)
-              .WithMessage("Salary id is required.");
+            RuleFor(t => t.Salary).NotEqual((decimal)default)
+               .GreaterThan(0).WithMessage("Salary is required.");
+
+            RuleFor(t => t.MonthlyWorkingHours).NotEqual((int)default)
+             .GreaterThan(0).WithMessage("Monthly working hours is required.");
 
             RuleFor(t => t.DepartmentId).NotEmpty()
                .NotEqual((Guid)default)

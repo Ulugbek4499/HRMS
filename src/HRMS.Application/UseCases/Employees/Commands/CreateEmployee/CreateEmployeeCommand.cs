@@ -8,7 +8,7 @@ using MediatR;
 
 namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
 {
-    public class CreateEmployeeCommand:IRequest<EmployeeDto>
+    public class CreateEmployeeCommand : IRequest<EmployeeDto>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -33,13 +33,13 @@ namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
 
             ValidatePositionIsNotNull(request, maybePostion);
 
-            var employee=new Employee()
+            var employee = new Employee()
             {
-                FirstName= request.FirstName,
-                LastName= request.LastName,
-               
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Position = maybePostion
             };
-            
+
             employee = _context.Employees.Add(employee).Entity;
             await _context.SaveChangesAsync(cancellationToken);
 

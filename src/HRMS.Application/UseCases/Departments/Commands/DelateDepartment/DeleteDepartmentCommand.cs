@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Departments.Models;
@@ -12,9 +7,9 @@ using MediatR;
 
 namespace HRMS.Application.UseCases.Departments.Commands.DelateDepartment
 {
-    public record DeleteDepartmentCommand(Guid departmentId):IRequest<DepartmentDto>;
+    public record DeleteDepartmentCommand(Guid departmentId) : IRequest<DepartmentDto>;
 
-    public class DeleteDepartmentCommandHandler:IRequestHandler<DeleteDepartmentCommand, DepartmentDto>
+    public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCommand, DepartmentDto>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;

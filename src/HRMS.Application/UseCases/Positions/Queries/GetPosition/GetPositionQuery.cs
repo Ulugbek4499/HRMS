@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
-using HRMS.Application.UseCases.Employees.Models;
 using HRMS.Application.UseCases.Positions.Models;
-using HRMS.Domain.Entities.Employees;
 using HRMS.Domain.Entities.Positions;
 using MediatR;
 
@@ -45,4 +38,5 @@ namespace HRMS.Application.UseCases.Positions.Queries.GetPosition
             }
         }
 
+    }
 }

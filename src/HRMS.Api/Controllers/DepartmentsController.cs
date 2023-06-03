@@ -12,25 +12,25 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class DepartmentsController : ApiControllerBase
     {
-        [HttpPost]
+        [HttpPost("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> PostDepartmentAsync(CreateDepartmentCommand command)
         {
             return await Mediator.Send(command);
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> GetDepartmentAsync(Guid departmentId)
         {
             return await Mediator.Send(new GetDepartmentQuery(departmentId));
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()
         {
             return await Mediator.Send(new GetDepartmentsQuery());
         }
 
-        [HttpPut]
+        [HttpPut("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> UpdateDepartmentAsync(Guid departmentId, UpdateDepartmentCommand command)
         {
             if (departmentId == null)
@@ -41,7 +41,7 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(command);
         }
 
-        [HttpDelete]
+        [HttpDelete("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> DeleteDepartmentAsync(Guid departmentId)
         {
             return await Mediator.Send(new DeleteDepartmentCommand(departmentId));

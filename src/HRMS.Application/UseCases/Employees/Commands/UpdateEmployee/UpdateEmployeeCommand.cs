@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Employees.Models;
 using HRMS.Domain.Entities.Employees;
 using HRMS.Domain.Entities.Positions;
-using HRMS.Domain.Entities.TimeSheets;
 using MediatR;
 
 namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
 {
-    public class UpdateEmployeeCommand:IRequest<EmployeeDto>
+    public class UpdateEmployeeCommand : IRequest<EmployeeDto>
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
