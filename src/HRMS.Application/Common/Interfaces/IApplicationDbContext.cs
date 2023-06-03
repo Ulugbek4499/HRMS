@@ -11,10 +11,7 @@ namespace HRMS.Application.Common.Interfaces
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Position> Positions { get; set; }
-        public DbSet<Salary> Salaries { get; set; }
         public DbSet<TimeSheet> TimeSheets { get; set; }
-
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
-        IQueryable<T> GetByIds<T>(IEnumerable<Guid> ids) where T : class;
     }
 }

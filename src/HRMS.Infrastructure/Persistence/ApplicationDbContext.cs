@@ -26,7 +26,6 @@ namespace HRMS.Infrastructure.Persistence
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Position> Positions { get; set; }
-        public DbSet<Salary> Salaries { get; set; }
         public DbSet<TimeSheet> TimeSheets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,22 +39,6 @@ namespace HRMS.Infrastructure.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.AddInterceptors(_interceptor);
-        }
-
-        public IQueryable<T> GetByIds<T>(IEnumerable<Guid> ids) where T : class
-        {
-            var entities = new List<T>();
-
-            using (var context = new ApplicationDbContext(_options, _interceptor))
-            {
-                foreach (var id in ids)
-                {
-                    entities.Add(context.Find<T>(
-                        new object[] { id }));
-                }
-            }
-
-            return entities.AsQueryable();
         }
     }
 }
