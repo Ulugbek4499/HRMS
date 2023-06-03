@@ -10,7 +10,7 @@ namespace HRMS.Application.UseCases.Employees.Models
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public PositionDto Position { get; set; }
+     //   public PositionDto Position { get; set; }
         public ICollection<TimeSheetDto> TimeSheets { get; set; }
     }
 }

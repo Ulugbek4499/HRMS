@@ -64,13 +64,5 @@ namespace HRMS.Application.UseCases.Positions.Commands.UpdatePosition
                 throw new NotFoundException(nameof(Department), request.DepartmentId);
             }
         }
-
-        private void ValidateSalaryIsNotNull(UpdatePositionCommand request, Salary? maybeSalary)
-        {
-            if (maybeSalary is null)
-            {
-                throw new NotFoundException(nameof(Salary), request.SalaryId);
-            }
-        }
     }
 }
