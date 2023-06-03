@@ -10,7 +10,6 @@ namespace HRMS.Infrastructure.Persistence.Configurations
         {
             builder.Navigation(p => p.Employees).AutoInclude();
             builder.Navigation(p => p.Department).AutoInclude();
-            builder.Navigation(p => p.Salary).AutoInclude();
         }
     }
 }
