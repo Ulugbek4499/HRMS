@@ -42,7 +42,7 @@ namespace HRMS.Application.UseCases.Positions.Commands.UpdatePosition
 
             maybePosition.Name = request.Name;
             maybePosition.Department = maybeDepartment;
-            maybePosition.Salar = request.Salary;
+            maybePosition.Salary = request.Salary;
             maybePosition.MonthlyWorkingHours = request.MonthlyWorkingHours;
 
             await _context.SaveChangesAsync(cancellationToken);

@@ -37,7 +37,7 @@ namespace HRMS.Application.UseCases.Positions.Commands.CreatePosition
             var position = new Position()
             {
                 Name = request.Name,
-                Salar = request.Salary,
+                Salary = request.Salary,
                 MonthlyWorkingHours = request.MonthlyWorkingHours,
                 Department = maybeDepartment
             };

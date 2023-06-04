@@ -8,7 +8,7 @@ namespace HRMS.Domain.Entities.Positions
     {
         public string Name { get; set; }
 
-        public decimal Salar { get; set; }
+        public decimal Salary { get; set; }
         public int MonthlyWorkingHours { get; set; }
 
         public Guid DepartmentId { get; set; }
