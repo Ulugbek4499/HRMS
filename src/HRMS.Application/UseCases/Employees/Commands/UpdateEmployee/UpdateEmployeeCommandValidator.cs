@@ -14,15 +14,31 @@ namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
                 .NotEqual((Guid)default)
                 .WithMessage("Position id is required.");
 
-            RuleFor(p => p.FirstName)
+            RuleFor(p => p.Name)
                 .NotEmpty()
                 .MaximumLength(50)
-                .WithMessage("FirstName is required.");
+                .WithMessage("Name is required.");
 
-            RuleFor(p => p.LastName)
-               .NotEmpty()
-               .MaximumLength(50)
-               .WithMessage("Lastname is required.");
+
+            RuleFor(u => u.PhoneNumber)
+                .Must(ValidatePhone)
+                .Length(13).WithMessage("Please enter valid phone number like +998901234567");
+
+        }
+
+        private bool ValidatePhone(string phone)
+        {
+            bool isTrue = phone.StartsWith("+998");
+
+            for (int i = 1; i < phone.Length; i++)
+            {
+                if (!char.IsNumber(phone[i]))
+                {
+                    phone.Remove(i, 1);
+                }
+            }
+
+            return isTrue;
         }
     }
 }

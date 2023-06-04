@@ -10,8 +10,8 @@ namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
 {
     public class CreateEmployeeCommand : IRequest<EmployeeDto>
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; } = "+998";
         public Guid PositionId { get; set; }
     }
 
@@ -28,6 +28,10 @@ namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
 
         public async Task<EmployeeDto> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
         {
+            bool isExists = _context.Employees.Any(u => u.PhoneNumber == request.PhoneNumber);
+
+            ValidateEmployeeNotExists(request, isExists);
+
             Position maybePostion =
                 _context.Positions.SingleOrDefault(p => p.Id.Equals(request.PositionId));
 
@@ -35,8 +39,8 @@ namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
 
             var employee = new Employee()
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
+                Name = request.Name,
+                PhoneNumber = request.PhoneNumber,
                 Position = maybePostion
             };
 
@@ -44,6 +48,14 @@ namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
             await _context.SaveChangesAsync(cancellationToken);
 
             return _mapper.Map<EmployeeDto>(employee);
+        }
+
+        private void ValidateEmployeeNotExists(CreateEmployeeCommand request, bool isExists)
+        {
+            if (isExists)
+            {
+                throw new AlreadyExistsException(nameof(Employee), request.PhoneNumber);
+            }
         }
 
         private void ValidatePositionIsNotNull(CreateEmployeeCommand request, Position? maybePostion)

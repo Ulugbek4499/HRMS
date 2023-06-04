@@ -12,6 +12,6 @@ namespace HRMS.Application.UseCases.Positions.Models
         public decimal Salary { get; set; }
         public int MonthlyWorkingHours { get; set; }
       //  public DepartmentDto Department { get; set; }
-        public ICollection<EmployeeDto> Employees { get; set; }
+       // public ICollection<EmployeeDto> Employees { get; set; }
     }
 }

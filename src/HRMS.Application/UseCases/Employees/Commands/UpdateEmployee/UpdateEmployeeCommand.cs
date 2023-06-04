@@ -11,8 +11,8 @@ namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
     public class UpdateEmployeeCommand : IRequest<EmployeeDto>
     {
         public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
         public Guid PositionId { get; set; }
     }
 
@@ -39,8 +39,8 @@ namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
 
             ValidatePositionsAreNotNull(request, maybePosition);
 
-            maybeEmployee.FirstName = request.FirstName;
-            maybeEmployee.LastName = request.LastName;
+            maybeEmployee.Name = request.Name;
+            maybeEmployee.PhoneNumber = request.PhoneNumber;
             maybeEmployee.Position = maybePosition;
 
             await _context.SaveChangesAsync(cancellationToken);
@@ -60,7 +60,7 @@ namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
         {
             if (maybeEmployee != null)
             {
-                throw new AlreadyExistsException(nameof(Employee), request.FirstName);
+                throw new AlreadyExistsException(nameof(Employee), request.Name);
             }
         }
     }
