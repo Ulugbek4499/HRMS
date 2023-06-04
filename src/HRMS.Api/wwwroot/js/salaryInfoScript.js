@@ -1,14 +1,16 @@
 async function getSalaryInfo()
 {
-  const salaryInfo= await fetch(`https://localhost:7085/api/SalaryInfo/GetAllSalaryInfo`, {
-    method: 'GET', 
-    mode: 'cors'
+    const salaryInfo = await fetch(`/api/SalaryInfo/GetAllSalaryInfo`,
+    {
+        method: 'GET', 
+        mode: 'cors'
   });
 
   return salaryInfo.json();
 }
 
-function CreateSalaryInfo(salaryInfo){
+function CreateSalaryInfo(salaryInfo)
+{
   const model= 
   `<tr>
           <td>${salaryInfo.name}</td>
@@ -25,12 +27,17 @@ function CreateSalaryInfo(salaryInfo){
 
 async function DisplaySalaryInfo()
 {
-  const salaries= await getSalaryInfo();
-  document.getElementById("SalaryTable").innerHTML=null;
-  salaries.forEach(element => {
-    const model=CreateSalaryInfo(element);
-    document.getElementById("SalaryTable").innerHTML=model;
-  });
+    const salaries = await getSalaryInfo();
+
+    document.getElementById("SalaryTable").innerHTML = null;
+
+    salaries.forEach(element =>
+    {
+        const model = CreateSalaryInfo(element);
+
+        document.getElementById("SalaryTable").innerHTML += model;
+
+    });
 } 
 
 DisplaySalaryInfo();

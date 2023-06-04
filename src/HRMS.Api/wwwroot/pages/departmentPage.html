@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Department</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Department Name</th>
+                </tr>
+            </thead>
+                  <tbody id="DepartmentTable">
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="../js/departmentScript.js"></script>
+</body>
+
+</html>
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Table Example</title>-->
+<!-- Bootstrap CSS -->
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Employee Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showDepartments()">Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPositions()">Positions</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">-->
+<!-- Departments Table -->
+<!--<div id="departmentsTableContainer">
+    <h2>Departments</h2>
+    <table class="table" id="departmentsTable">
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="departmentsTableBody">-->
+<!-- Table rows will be dynamically added here -->
+<!--</tbody>
+    </table>
+    <button type="button" class="btn btn-primary" onclick="addDepartment()">Add Department</button>
+</div>-->
+<!-- Positions Table -->
+<!--<div id="positionsTableContainer" style="display: none;">
+    <h2>Positions</h2>
+    <table class="table" id="positionsTable">
+        <thead>
+            <tr>
+                <th>Position Name</th>
+                <th>Department</th>
+                <th>Working Hours</th>
+                <th>Salary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="positionsTableBody">-->
+<!-- Table rows will be dynamically added here -->
+<!--</tbody>
+        </table>
+        <button type="button" class="btn btn-primary" onclick="addPosition()">Add Position</button>
+    </div>
+</div>-->
+<!-- Add/Edit Department Modal -->
+<!--<div class="modal fade" id="departmentModal" tabindex="-1" role="dialog" aria-labelledby="departmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="departmentModalLabel">Department Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="departmentForm">
+                    <div class="form-group">
+                        <label for="departmentName">Department Name:</label>
+                        <input type="text" class="form-control" id="departmentName" placeholder="Enter department name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveDepartment()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Add/Edit Position Modal -->
+<!--<div class="modal fade" id="positionModal" tabindex="-1" role="dialog" aria-labelledby="positionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="positionModalLabel">Position Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="positionForm">
+                    <div class="form-group">
+                        <label for="positionName">Position Name:</label>
+                        <input type="text" class="form-control" id="positionName" placeholder="Enter position name">
+                    </div>
+                    <div class="form-group">
+                        <label for="departmentSelect">Department:</label>
+                        <select class="form-control" id="departmentSelect">-->
+<!-- Department options will be dynamically added here -->
+<!--</select>
+                    </div>
+                    <div class="form-group">
+                        <label for="workingHours">Working Hours:</label>
+                        <input type="number" class="form-control" id="workingHours" placeholder="Enter working hours">
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary:</label>
+                        <input type="text" class="form-control" id="salary" placeholder="Enter salary">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="savePosition()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Bootstrap JS -->
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+    // Sample data
+    const departments = [
+      { id: 1, name: "Sales" },
+      { id: 2, name: "Marketing" },
+      { id: 3, name: "Finance" }
+    ];
+
+    const positions = [
+      { id: 1, name: "Manager", department: "Sales", workingHours: "40", salary: "$70,000" },
+      { id: 2, name: "Coordinator", department: "Marketing", workingHours: "35", salary: "$50,000" },
+      { id: 3, name: "Accountant", department: "Finance", workingHours: "40", salary: "$60,000" }
+    ];
+
+    // Show Departments table
+    function showDepartments() {
+      document.getElementById("departmentsTableContainer").style.display = "block";
+      document.getElementById("positionsTableContainer").style.display = "none";
+    }
+
+    // Show Positions table
+    function showPositions() {
+      document.getElementById("departmentsTableContainer").style.display = "none";
+      document.getElementById("positionsTableContainer").style.display = "block";
+    }
+
+    // Populate Departments table
+    function populateDepartmentsTable() {
+      const departmentsTableBody = document.getElementById("departmentsTableBody");
+      departmentsTableBody.innerHTML = "";
+
+      departments.forEach(department => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${department.name}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#departmentModal" onclick="editDepartment(${department.id})">Edit</button>
+            <button type="button" class="btn btn-sm btn-danger" onclick="deleteDepartment(${department.id})">Delete</button>
+          </td>
+        `;
+        departmentsTableBody.appendChild(row);
+      });
+    }
+
+    // Add/Edit Department
+    function saveDepartment() {
+      const departmentForm = document.getElementById("departmentForm");
+      const departmentNameInput = document.getElementById("departmentName");
+
+      const departmentName = departmentNameInput.value;
+
+      if (departmentName) {
+        // Check if it's an edit or add action
+        const departmentIdInput = document.getElementById("departmentId");
+        const departmentId = departmentIdInput.value;
+
+        if (departmentId) {
+          // Edit existing department
+          const department = departments.find(dep => dep.id === parseInt(departmentId));
+          if (department) {
+            department.name = departmentName;
+            departmentForm.reset();
+            $("#departmentModal").modal("hide");
+            populateDepartmentsTable();
+          }
+        } else {
+          // Add new department
+          const department = { id: departments.length + 1, name: departmentName };
+          departments.push(department);
+          departmentForm.reset();
+          $("#departmentModal").modal("hide");
+          populateDepartmentsTable();
+        }
+      }
+    }
+
+    // Edit Department
+    function editDepartment(departmentId) {
+      const department = departments.find(dep => dep.id === departmentId);
+      if (department) {
+        const departmentForm = document.getElementById("departmentForm");
+        const departmentNameInput = document.getElementById("departmentName");
+        const departmentIdInput = document.getElementById("departmentId");
+
+        departmentNameInput.value = department.name;
+        departmentIdInput.value = department.id;
+
+        $("#departmentModal").modal("show");
+      }
+    }
+
+    // Delete Department
+    function deleteDepartment(departmentId) {
+      const index = departments.findIndex(dep => dep.id === departmentId);
+      if (index !== -1) {
+        departments.splice(index, 1);
+        populateDepartmentsTable();
+      }
+    }
+
+    // Populate Positions table
+    function populatePositionsTable() {
+      const positionsTableBody = document.getElementById("positionsTableBody");
+      positionsTableBody.innerHTML = "";
+
+      positions.forEach(position => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${position.name}</td>
+          <td>${position.department}</td>
+          <td>${position.workingHours}</td>
+          <td>${position.salary}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#positionModal" onclick="editPosition(${position.id})">Edit</button>
+            <button type="button" class="btn btn-sm btn-danger" onclick="deletePosition(${position.id})">Delete</button>
+          </td>
+        `;
+        positionsTableBody.appendChild(row);
+      });
+    }
+
+    // Add/Edit Position
+    function savePosition() {
+      const positionForm = document.getElementById("positionForm");
+      const positionNameInput = document.getElementById("positionName");
+      const departmentSelect = document.getElementById("departmentSelect");
+      const workingHoursInput = document.getElementById("workingHours");
+      const salaryInput = document.getElementById("salary");
+
+      const positionName = positionNameInput.value;
+      const department = departmentSelect.value;
+      const workingHours = workingHoursInput.value;
+      const salary = salaryInput.value;
+
+      if (positionName && department && workingHours && salary) {
+        // Check if it's an edit or add action
+        const positionIdInput = document.getElementById("positionId");
+        const positionId = positionIdInput.value;
+
+        if (positionId) {
+          // Edit existing position
+          const position = positions.find(pos => pos.id === parseInt(positionId));
+          if (position) {
+            position.name = positionName;
+            position.department = department;
+            position.workingHours = workingHours;
+            position.salary = salary;
+            positionForm.reset();
+            $("#positionModal").modal("hide");
+            populatePositionsTable();
+          }
+        } else {
+          // Add new position
+          const position = { id: positions.length + 1, name: positionName, department: department, workingHours: workingHours, salary: salary };
+          positions.push(position);
+          positionForm.reset();
+          $("#positionModal").modal("hide");
+          populatePositionsTable();
+        }
+      }
+    }
+
+    // Edit Position
+    function editPosition(positionId) {
+      const position = positions.find(pos => pos.id === positionId);
+      if (position) {
+        const positionForm = document.getElementById("positionForm");
+        const positionNameInput = document.getElementById("positionName");
+        const departmentSelect = document.getElementById("departmentSelect");
+        const workingHoursInput = document.getElementById("workingHours");
+        const salaryInput = document.getElementById("salary");
+        const positionIdInput = document.getElementById("positionId");
+
+        positionNameInput.value = position.name;
+        departmentSelect.value = position.department;
+        workingHoursInput.value = position.workingHours;
+        salaryInput.value = position.salary;
+        positionIdInput.value = position.id;
+
+        $("#positionModal").modal("show");
+      }
+    }
+
+    // Delete Position
+    function deletePosition(positionId) {
+      const index = positions.findIndex(pos => pos.id === positionId);
+      if (index !== -1) {
+        positions.splice(index, 1);
+        populatePositionsTable();
+      }
+    }
+
+    // Initialize the tables
+    populateDepartmentsTable();
+    populatePositionsTable();
+    </script>
+</body>
+</html>-->
