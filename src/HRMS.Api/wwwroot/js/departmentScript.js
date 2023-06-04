@@ -19,7 +19,7 @@ function CreateDepartmentInfo(departmentInfo)
     return model;
 }
 
-async function DisplaySalaryInfo()
+async function DisplayDepartmentInfo()
 {
     const departments = await getDepartmentInfo();
 
@@ -31,4 +31,6 @@ async function DisplaySalaryInfo()
     });
 }
 
-DisplaySalaryInfo();
+
+DisplayDepartmentInfo();
+
