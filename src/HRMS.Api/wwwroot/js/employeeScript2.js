@@ -41,7 +41,7 @@ async function deleteEmployee(id) {
 }
 
 async function displayEmployeeInfo() {
-    const employees = await getemployeeInfo();
+    const employees = await getEmployeeInfo();
 
     const employeeTable = document.getElementById("EmployeeTable");
     employeeTable.innerHTML = '';

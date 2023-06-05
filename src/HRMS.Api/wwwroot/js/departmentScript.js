@@ -1,6 +1,4 @@
-﻿
-
-async function getDepartmentInfo() {
+﻿async function getDepartmentInfo() {
     const departmentInfo = await fetch(`/api/Departments/GetAllDepartment`, {
         method: 'GET',
         mode: 'cors'
@@ -11,7 +9,7 @@ async function getDepartmentInfo() {
 
 function createDepartmentInfo(departmentInfo) {
     const model =
-    `
+        `
     <tr id="department-${departmentInfo.department_id}">
       <td>${departmentInfo.name}</td>
       <td class="actions" data-th="">
@@ -25,22 +23,48 @@ function createDepartmentInfo(departmentInfo) {
 
     return model;
 }
+
 async function deleteDepartment(department_id) {
     const response = await fetch(`/api/Departments/DeleteDepartment?departmentId=${department_id}`, {
         method: 'DELETE',
         mode: 'cors'
     });
 
-
     // Check if the request was successful and remove the department from the table
     if (response.ok) {
         const departmentRow = document.getElementById(`department-${department_id}`);
         departmentRow.style.display = "none";
-
     }
 }
 
-async function displaySalaryInfo() {
+async function postDepartment() {
+    let department = document.getElementById("PostDepartment");
+
+    console.log(department.value);
+
+    const jsoncha = {
+        name: department.value
+    };
+
+    const response = await fetch(`/api/Departments/PostDepartment`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsoncha)
+    });
+
+    // Check if the request was successful and update the table
+    if (response.ok) {
+        const createdDepartment = await response.json();
+        const model = createDepartmentInfo(createdDepartment);
+        const departmentTable = document.getElementById("DepartmentTable");
+        departmentTable.innerHTML += model;
+    }
+}
+
+async function displayDepartmentInfo() {
     const departments = await getDepartmentInfo();
 
     const departmentTable = document.getElementById("DepartmentTable");
@@ -52,4 +76,4 @@ async function displaySalaryInfo() {
     });
 }
 
-displaySalaryInfo();
+displayDepartmentInfo();
