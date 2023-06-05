@@ -33,8 +33,6 @@ async function deleteEmployee(id) {
         mode: 'cors'
     });
 
-
-    // Check if the request was successful and remove the employee from the table
     if (response.ok) {
         const employeeRow = document.getElementById(`employee-${id}`);
         employeeRow.style.display = "none";
