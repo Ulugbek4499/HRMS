@@ -26,6 +26,7 @@ namespace HRMS.Api.Controllers
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> PostDepartmentAsync(CreateDepartmentCommand command)
         {
+            _lazyCache.Remove(My_Key);
             return await Mediator.Send(command);
         }
 
@@ -61,6 +62,7 @@ namespace HRMS.Api.Controllers
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> DeleteDepartmentAsync(Guid departmentId)
         {
+            _lazyCache.Remove(My_Key);
             return await Mediator.Send(new DeleteDepartmentCommand(departmentId));
         }
     }

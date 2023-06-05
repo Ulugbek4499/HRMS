@@ -10,7 +10,8 @@ async function getDepartmentInfo() {
 }
 
 function createDepartmentInfo(departmentInfo) {
-    const model = `
+    const model =
+    `
     <tr id="department-${departmentInfo.department_id}">
       <td>${departmentInfo.name}</td>
       <td class="actions" data-th="">
