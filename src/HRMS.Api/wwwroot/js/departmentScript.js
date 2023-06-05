@@ -13,25 +13,23 @@ function createDepartmentInfo(departmentInfo) {
     const model = `
     <tr id="department-${departmentInfo.department_id}">
       <td>${departmentInfo.name}</td>
-      
       <td class="actions" data-th="">
-                                    <div class="text-right">
-
-                                        <button  onclick="deleteDepartment(${departmentInfo.department_id})" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                            Delete
-                                        </button>
-                                    </div>
-                                </td>
+          <div class="text-right">
+              <button onclick="deleteDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                  Delete
+              </button>
+          </div>
+      </td>
     </tr>`;
 
     return model;
 }
 async function deleteDepartment(department_id) {
-    const response = await fetch(`/api/Departments/DeleteDepartment?departmentId=${department_id}`,
-        {
-            method: 'DELETE',
-            mode: 'cors'
-        });
+    const response = await fetch(`/api/Departments/DeleteDepartment?departmentId=${department_id}`, {
+        method: 'DELETE',
+        mode: 'cors'
+    });
+
 
     // Check if the request was successful and remove the department from the table
     if (response.ok) {
