@@ -4,7 +4,9 @@ using HRMS.Application.UseCases.Departments.Commands.UpdateDepartment;
 using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartment;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartments;
+using LazyCache;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace HRMS.Api.Controllers
 {
@@ -12,6 +14,15 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class DepartmentsController : ApiControllerBase
     {
+ 
+        private readonly IAppCache _lazyCache;
+        private const string My_Key = "My_Key";
+
+        public DepartmentsController(IAppCache lazyCache)
+        {
+            _lazyCache = lazyCache;
+        }
+
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> PostDepartmentAsync(CreateDepartmentCommand command)
         {
@@ -27,7 +38,12 @@ namespace HRMS.Api.Controllers
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()
         {
-            return await Mediator.Send(new GetDepartmentsQuery());
+            return await _lazyCache.GetOrAddAsync(My_Key, async c =>
+            {
+                c.SetAbsoluteExpiration(TimeSpan.FromSeconds((20)));
+                return await Mediator.Send(new GetDepartmentsQuery());
+            });
+           
         }
 
         [HttpPut("[action]")]
@@ -38,6 +54,7 @@ namespace HRMS.Api.Controllers
                 return BadRequest();
             }
 
+            _lazyCache.Remove(My_Key);
             return await Mediator.Send(command);
         }
 
