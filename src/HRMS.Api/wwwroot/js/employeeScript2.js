@@ -12,13 +12,13 @@ async function getEmployeeInfo() {
 function createEmployeeInfo(employeeInfo) {
     const model =
     `
-    <tr id="employee-${employeeInfo.employee_id}">
+    <tr id="employee-${employeeInfo.id}">
       <td>${employeeInfo.name}</td>
       <td>${employeeInfo.phoneNumber}</td>
       <td>${employeeInfo.position.name}</td>
       <td class="actions" data-th="">
           <div class="text-right">
-              <button onclick="deleteEmployee('${employeeInfo.employee_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+              <button onclick="deleteEmployee('${employeeInfo.id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
                   Delete
               </button>
           </div>
@@ -27,8 +27,8 @@ function createEmployeeInfo(employeeInfo) {
 
     return model;
 }
-async function deleteEmployee(employee_id) {
-    const response = await fetch(`/api/Employees/DeleteEmployee?employeeId=${employee_id}`, {
+async function deleteEmployee(id) {
+    const response = await fetch(`/api/Employees/DeleteEmployee?EmployeeId=${id}`, {
         method: 'DELETE',
         mode: 'cors'
     });
@@ -36,7 +36,7 @@ async function deleteEmployee(employee_id) {
 
     // Check if the request was successful and remove the employee from the table
     if (response.ok) {
-        const employeeRow = document.getElementById(`employee-${employee_id}`);
+        const employeeRow = document.getElementById(`employee-${id}`);
         employeeRow.style.display = "none";
 
     }
