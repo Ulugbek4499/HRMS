@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimeSheet Information</title>
+    <title>TimeSheet</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -27,13 +28,37 @@
             </tbody>
         </table>
 
+        <button id="AddNewTimeSheet" class="btn btn-primary">Add New TimeSheet</button>
 
+        <div id="CreateTimeSheetForm" style="display: none;">
+
+            <div class="form-group">
+                <label for="EmployeeId">Employee</label>
+                <select class="form-control" id="EmployeeId">
+                    <!-- Dropdown options will be populated dynamically -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="WorkingDay">Working Day</label>
+                <input type="datetime-local" class="form-control" id="WorkingDay" placeholder="Enter working day">
+            </div>
+
+            <div class="form-group">
+                <label for="WorkedHours">Worked Hours</label>
+                <input type="number" class="form-control" id="WorkedHours" placeholder="Enter worked hours">
+            </div>
+
+            <button id="CreateTimeSheet" class="btn btn-primary">Create</button>
+        </div>
     </div>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="../js/timeSheetScript.js"></script>
+    <script src="../js/timeSheetScript.js" asp-append-version="true"></script>
+    <script src="../js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="../js/jquery-3.3.1.slim.min.js" asp-append-version="true"></script>
+    <script src="../js/popper.min.js" asp-append-version="true"></script>
 </body>
 
 </html>
-

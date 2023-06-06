@@ -14,11 +14,11 @@ function createEmployeeInfo(employeeInfo) {
       <td>${employeeInfo.phoneNumber}</td>
       <td>${employeeInfo.position.name}</td>
       <td class="actions" data-th="">
-          <div class="text-right">
-              <button onclick="deleteEmployee('${employeeInfo.id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                  Delete
-              </button>
-          </div>
+        <div class="text-right">
+          <button onclick="deleteEmployee('${employeeInfo.id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+            Delete
+          </button>
+        </div>
       </td>
     </tr>`;
 
@@ -34,7 +34,7 @@ async function populatePositions() {
 
     positions.forEach((position) => {
         const option = document.createElement('option');
-        option.value = position.position_id;
+        option.value = position.positionId;
         option.textContent = position.name;
 
         positionDropdown.appendChild(option);
@@ -59,7 +59,7 @@ async function displayEmployeeInfo() {
     const employeeTable = document.getElementById("EmployeeTable");
     employeeTable.innerHTML = '';
 
-    employees.forEach(element => {
+    employees.forEach((element) => {
         const model = createEmployeeInfo(element);
         employeeTable.innerHTML += model;
     });
@@ -73,9 +73,8 @@ async function createEmployee() {
     const newEmployee = {
         name: nameInput.value,
         phoneNumber: phoneNumberInput.value,
-        position_id: positionIdInput.value
+        positionId: positionIdInput.value
     };
-
 
     const response = await fetch(`/api/Employees/PostEmployee`, {
         method: 'POST',
@@ -133,4 +132,3 @@ populatePositions();
 
 // Display the existing employee information on page load
 displayEmployeeInfo();
-
