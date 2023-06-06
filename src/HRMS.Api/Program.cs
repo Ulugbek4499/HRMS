@@ -11,6 +11,11 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Services.AddControllers();
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("RedisDB");
+});
+
 builder.Services.AddResponseCaching();
 builder.Services.AddOutputCache();
 builder.Services.AddMemoryCache();

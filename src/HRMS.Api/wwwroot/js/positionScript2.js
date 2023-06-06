@@ -1,19 +1,4 @@
-﻿async function populateDepartments() {
-    const response = await fetch(`/api/Departments/GetAllDepartment`);
-    const departments = await response.json();
-
-    const departmentDropdown = document.getElementById('DepartmentId');
-    departmentDropdown.innerHTML = '';
-
-    departments.forEach((department) => {
-        const option = document.createElement('option');
-        option.value = department.department_id;
-        option.textContent = department.name;
-        departmentDropdown.appendChild(option);
-    });
-}
-
-async function getPositionInfo() {
+﻿async function getPositionInfo() {
     const positionInfo = await fetch(`/api/Positions/GetAllPosition`, {
         method: 'GET',
         mode: 'cors'
@@ -41,6 +26,21 @@ function createPositionInfo(positionInfo) {
     return model;
 }
 
+async function populateDepartments() {
+    const response = await fetch(`/api/Departments/GetAllDepartment`);
+    const departments = await response.json();
+
+    const departmentDropdown = document.getElementById('DepartmentId');
+    departmentDropdown.innerHTML = '';
+
+    departments.forEach((department) => {
+        const option = document.createElement('option');
+        option.value = department.department_id;
+        option.textContent = department.name;
+        departmentDropdown.appendChild(option);
+    });
+}
+
 async function deletePosition(position_id) {
     const response = await fetch(`/api/Positions/DeletePosition?PositionId=${position_id}`, {
         method: 'DELETE',
@@ -53,6 +53,7 @@ async function deletePosition(position_id) {
     }
 }
 
+
 async function displayPositionInfo() {
     const positions = await getPositionInfo();
 
@@ -64,6 +65,7 @@ async function displayPositionInfo() {
         positionTable.innerHTML += model;
     });
 }
+
 
 async function createPosition() {
     let nameInput = document.getElementById("PositionName");
@@ -86,6 +88,7 @@ async function createPosition() {
         },
         body: JSON.stringify(newPosition)
     });
+
 
     if (response.ok) {
         // Position created successfully, update the position table

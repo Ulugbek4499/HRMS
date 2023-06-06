@@ -1,4 +1,5 @@
-﻿using HRMS.Application.UseCases.Employees.Commands.CreateEmployee;
+﻿using HRMS.Api.Filters;
+using HRMS.Application.UseCases.Employees.Commands.CreateEmployee;
 using HRMS.Application.UseCases.Employees.Commands.DeleteEmployee;
 using HRMS.Application.UseCases.Employees.Commands.UpdateEmployee;
 using HRMS.Application.UseCases.Employees.Models;
@@ -25,6 +26,7 @@ namespace HRMS.Api.Controllers
         }
 
         [HttpGet("[action]")]
+        [LazyCache(10, 50)]
         public async ValueTask<ActionResult<EmployeeDto[]>> GetAllEmployee()
         {
             return await Mediator.Send(new GetEmployeesQuery());
