@@ -8,7 +8,7 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
+
 </head>
 
 <body>
@@ -28,6 +28,25 @@
             </tbody>
         </table>
 
+        <div class="form-group">
+            <label for="PositionName">Position Name</label>
+            <input type="text" class="form-control" id="PositionName" placeholder="Enter position name">
+        </div>
+        <div class="form-group">
+            <label for="Salary">Salary</label>
+            <input type="number" class="form-control" id="Salary" placeholder="Enter salary">
+        </div>
+        <div class="form-group">
+            <label for="MonthlyWorkingHours">Monthly Working Hours</label>
+            <input type="number" class="form-control" id="MonthlyWorkingHours" placeholder="Enter monthly working hours">
+        </div>
+        <div class="form-group">
+            <label for="DepartmentId">Department</label>
+            <select class="form-control" id="DepartmentId">
+                <!-- Dropdown options will be populated dynamically -->
+            </select>
+        </div>
+        <button id="CreatePosition" class="btn btn-primary">Create</button>
     </div>
 
     <!-- Bootstrap JavaScript -->

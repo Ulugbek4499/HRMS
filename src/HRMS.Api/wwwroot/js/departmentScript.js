@@ -55,7 +55,6 @@ async function postDepartment() {
         body: JSON.stringify(jsoncha)
     });
 
-    // Check if the request was successful and update the table
     if (response.ok) {
         const createdDepartment = await response.json();
         const model = createDepartmentInfo(createdDepartment);
