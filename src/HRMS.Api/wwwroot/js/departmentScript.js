@@ -204,6 +204,41 @@ async function deleteDepartment(department_id) {
     }
 }
 
+/*async function postDepartment() {
+    let departmentInput = document.getElementById("PostDepartment");
+    let departmentName = departmentInput.value.trim();
+
+    if (departmentName === '') {
+        // Display an error message or handle the empty department name case as needed
+        console.log('Department name cannot be empty');
+        return;
+    }
+
+    const jsoncha = {
+        name: departmentName
+    };
+
+    const response = await fetch(`/api/Departments/PostDepartment`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsoncha)
+    });
+
+    if (response.ok) {
+        const createdDepartment = await response.json();
+        const model = createDepartmentInfo(createdDepartment);
+        const departmentTable = document.getElementById("DepartmentTable");
+        departmentTable.innerHTML += model;
+
+        // Clear the input field after successfully creating the department
+        departmentInput.value = '';
+    }
+}
+*/
+
 async function postDepartment() {
     let departmentInput = document.getElementById("PostDepartment");
     let departmentName = departmentInput.value.trim();
@@ -269,13 +304,12 @@ async function editDepartment(department_id) {
     // Show the update button and hide the edit button
     updateButton.style.display = 'inline-block';
 }
-
 async function updateDepartment(department_id) {
     const nameElement = document.getElementById(`name-${department_id}`);
     const updateButton = document.getElementById(`update-${department_id}`);
 
     // Get the new department name from the input field
-    const newName = nameElement.firstChild.value;
+    const newName = nameElement.firstChild.nextSibling.value;
 
     // Send a request to update the department name
     const response = await fetch(`/api/Departments/UpdateDepartment?departmentId=${department_id}&name=${newName}`, {
