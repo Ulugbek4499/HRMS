@@ -119,16 +119,12 @@ function handleAddNewEmployee() {
     addNewEmployeeButton.style.display = "none";
 }
 
-// Add an event listener to the create button
 const createButton = document.getElementById("CreateEmployee");
 createButton.addEventListener("click", handleCreateEmployee);
 
-// Add an event listener to the "Add New Employee" button
 const addNewEmployeeButton = document.getElementById("AddNewEmployee");
 addNewEmployeeButton.addEventListener("click", handleAddNewEmployee);
 
-// Populate the positions dropdown on page load
 populatePositions();
-
-// Display the existing employee information on page load
+-
 displayEmployeeInfo();
