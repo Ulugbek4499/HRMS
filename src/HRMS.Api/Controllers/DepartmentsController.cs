@@ -1,4 +1,5 @@
-﻿using HRMS.Application.UseCases.Departments.Commands.CreateDepartment;
+﻿using HRMS.Api.Filters;
+using HRMS.Application.UseCases.Departments.Commands.CreateDepartment;
 using HRMS.Application.UseCases.Departments.Commands.DelateDepartment;
 using HRMS.Application.UseCases.Departments.Commands.UpdateDepartment;
 using HRMS.Application.UseCases.Departments.Models;
@@ -36,6 +37,7 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetDepartmentQuery(departmentId));
         }
 
+       
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()
         {

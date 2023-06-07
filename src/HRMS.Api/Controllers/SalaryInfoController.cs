@@ -1,4 +1,5 @@
-﻿using HRMS.Application.UseCases.Positions.Models;
+﻿using HRMS.Api.Filters;
+using HRMS.Application.UseCases.Positions.Models;
 using HRMS.Application.UseCases.Positions.Queries.GetPositions;
 using HRMS.Application.UseCases.SalaryInfo.Models;
 using HRMS.Application.UseCases.SalaryInfo.Query;
@@ -10,7 +11,7 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class SalaryInfoController : ApiControllerBase
     {
-
+        [ETag]
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<SalaryInfoDto[]>> GetAllSalaryInfo()
         {
