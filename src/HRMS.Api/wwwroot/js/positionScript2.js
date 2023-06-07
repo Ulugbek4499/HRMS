@@ -16,6 +16,9 @@ function createPositionInfo(positionInfo) {
        <td>${positionInfo.monthlyWorkingHours}</td>
        <td class="actions" data-th="">
           <div class="text-right">
+          <button onclick="editPosition('${positionInfo.position_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                  Update
+              </button>
               <button onclick="deletePosition('${positionInfo.position_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
                   Delete
               </button>
@@ -26,6 +29,62 @@ function createPositionInfo(positionInfo) {
     return model;
 }
 
+
+async function editPosition(id) {
+
+    document.getElementById("UpdatePositionForm").style.display = "block";
+    
+    let nameInput = document.getElementById("PositionName2");
+    let salaryInput = document.getElementById("Salary2");
+    let monthlyHoursInput = document.getElementById("MonthlyWorkingHours2");
+    let departmentIdInput = document.getElementById("DepartmentId2");
+
+    const newPosition = {
+        id : id,
+        name: nameInput.value,
+        salary: parseInt(salaryInput.value),
+        monthlyWorkingHours: parseInt(monthlyHoursInput.value),
+        departmentId: departmentIdInput.value
+    };
+    await updateButtnFunc(newPosition);
+    
+    if (updatePositon.ok) {
+        // Position created successfully, update the position table
+        displayPositionInfo();
+
+        // Reset input fields
+        nameInput.value = '';
+        salaryInput.value = '';
+        monthlyHoursInput.value = '';
+        departmentIdInput.value = '';
+
+        // Hide the create position form
+        const createPositionForm = document.getElementById("UpdatePositionForm");
+        createPositionForm.style.display = "none";
+
+        // Show the "Add New Position" button
+        const addNewPositionButton = document.getElementById("AddNewPosition");
+        addNewPositionButton.style.display = "block";
+    }
+
+
+
+}
+
+async function updateButtnFunc(model) {
+
+    const updatePositon = await fetch(`/api/Positions/UpdatePosition`, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(model)
+    });
+    return updatePositon;
+
+
+}
 async function populateDepartments() {
     const response = await fetch(`/api/Departments/GetAllDepartment`);
     const departments = await response.json();
@@ -104,9 +163,7 @@ async function createPosition() {
         const createPositionForm = document.getElementById("CreatePositionForm");
         createPositionForm.style.display = "none";
 
-        // Show the "Add New Position" button
-        const addNewPositionButton = document.getElementById("AddNewPosition");
-        addNewPositionButton.style.display = "block";
+       
     }
 }
 

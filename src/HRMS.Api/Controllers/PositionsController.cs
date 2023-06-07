@@ -31,9 +31,9 @@ namespace HRMS.Api.Controllers
         }
 
         [HttpPut("[action]")]
-        public async ValueTask<ActionResult<PositionDto>> UpdatePositionAsync(Guid PositionId, UpdatePositionCommand command)
+        public async ValueTask<ActionResult<PositionDto>> UpdatePositionAsync([FromForm]UpdatePositionCommand command)
         {
-            if (PositionId == null)
+            if (command.Id == null)
             {
                 return BadRequest();
             }
