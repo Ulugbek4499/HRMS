@@ -7,33 +7,28 @@
     return timeSheetInfo.json();
 }
 
-function createTimesheetRow(timeSheetInfo) {
-    const row = document.createElement('tr');
-    row.id = `timeSheet-${timeSheetInfo.timeSheet_id}`;
 
-    const employeeNameCell = document.createElement('td');
-    employeeNameCell.textContent = timeSheetInfo.employee.name;
+function createTimeSheetInfo(timeSheetInfo) {
+    const model = `
+    <tr id="timeSheet-${timeSheetInfo.timeSheet_id}">
+        <td>${timeSheetInfo.employee.name}</td>
+        <td>${timeSheetInfo.workingDay}</td>
+        <td>${timeSheetInfo.workedHours}</td>
+        <td class="actions" data-th="">
+            <div class="text-right">
+                <button onclick="editTimeSheet('${timeSheetInfo.timeSheet_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                    Edit
+                </button>
+                <button onclick="deleteTimeSheet('${timeSheetInfo.timeSheet_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                    Delete
+                </button>
+            </div>
+        </td>
+    </tr>`;
 
-    const workingDayCell = document.createElement('td');
-    workingDayCell.textContent = timeSheetInfo.workingDay;
-
-    const workedHoursCell = document.createElement('td');
-    workedHoursCell.textContent = timeSheetInfo.workedHours;
-
-    const actionsCell = document.createElement('td');
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'btn btn-white border-secondary bg-white btn-md mb-2';
-    deleteButton.textContent = 'Delete';
-    deleteButton.addEventListener('click', () => deleteTimeSheet(timeSheetInfo.timeSheet_id));
-    actionsCell.appendChild(deleteButton);
-
-    row.appendChild(employeeNameCell);
-    row.appendChild(workingDayCell);
-    row.appendChild(workedHoursCell);
-    row.appendChild(actionsCell);
-
-    return row;
+    return model;
 }
+
 
 async function populateEmployees() {
     const response = await fetch(`/api/Employees/GetAllEmployee`);
@@ -42,11 +37,21 @@ async function populateEmployees() {
     const employeeDropdown = document.getElementById('EmployeeId');
     employeeDropdown.innerHTML = '';
 
+    const editedEmployeeDropdown = document.getElementById('EditEmployeeId');
+    editedEmployeeDropdown.innerHTML = '';
+
     employees.forEach((employee) => {
         const option = document.createElement('option');
         option.value = employee.id;
         option.textContent = `${employee.name} - ${employee.phoneNumber}`;
         employeeDropdown.appendChild(option);
+    });
+
+    employees.forEach((employee) => {
+        const option = document.createElement('option');
+        option.value = employee.id;
+        option.textContent = `${employee.name} - ${employee.phoneNumber}`;
+        editedEmployeeDropdown.appendChild(option);
     });
 }
 
@@ -62,15 +67,16 @@ async function deleteTimeSheet(timeSheet_id) {
     }
 }
 
+
 async function displayTimeSheetInfo() {
     const timeSheets = await getTimeSheetInfo();
 
-    const timeSheetTable = document.getElementById('TimeSheetTable');
+    const timeSheetTable = document.getElementById("TimeSheetTable");
     timeSheetTable.innerHTML = '';
 
-    timeSheets.forEach((timeSheet) => {
-        const row = createTimesheetRow(timeSheet);
-        timeSheetTable.appendChild(row);
+    timeSheets.forEach((element) => {
+        const model = createTimeSheetInfo(element);
+        timeSheetTable.innerHTML += model;
     });
 }
 
@@ -117,32 +123,33 @@ async function createTimeSheet() {
 }
 
 
-function handleCreateTimeSheet(event) {
-    event.preventDefault();
+function handleCreateTimeSheet() {
     createTimeSheet();
 }
 
-function handleAddNewTimeSheet(event) {
-    event.preventDefault();
-    // Show the create time sheet form
-    const createTimeSheetForm = document.getElementById('CreateTimeSheetForm');
-    createTimeSheetForm.style.display = 'block';
+function editTimeSheet(timeSheet_id) {
 
-    // Hide the "Add New TimeSheet" button
-    const addNewTimeSheetButton = document.getElementById('AddNewTimeSheet');
-    addNewTimeSheetButton.style.display = 'none';
+    document.getElementById("InputEditTimeSheetId").value = `${timeSheet_id}`;
+
+    const createTimeSheetForm = document.getElementById("EditTimeSheetForm");
+    createTimeSheetForm.style.display = "block";
+
 }
 
-// Add an event listener to the create button
-const createButton = document.getElementById('CreateTimeSheet');
-createButton.addEventListener('click', handleCreateTimeSheet);
+function handleAddNewTimeSheet() {
+    const createTimeSheetForm = document.getElementById("CreateTimeSheetForm");
+    createTimeSheetForm.style.display = "block";
 
-// Add an event listener to the "Add New TimeSheet" button
-const addNewTimeSheetButton = document.getElementById('AddNewTimeSheet');
-addNewTimeSheetButton.addEventListener('click', handleAddNewTimeSheet);
+    const addNewTimeSheetButton = document.getElementById("AddNewTimeSheet");
+    addNewTimeSheetButton.style.display = "none";
+}
 
-// Populate the employees dropdown on page load
+const createButton = document.getElementById("CreateTimeSheet");
+createButton.addEventListener("click", handleCreateTimeSheet);
+
+const addNewTimeSheetButton = document.getElementById("AddNewTimeSheet");
+addNewTimeSheetButton.addEventListener("click", handleAddNewTimeSheet);
+
 populateEmployees();
 
-// Display existing time sheet information
 displayTimeSheetInfo();
