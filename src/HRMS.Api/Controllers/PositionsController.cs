@@ -30,8 +30,8 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetPositionsQuery());
         }
 
-        [HttpPut("[action]")]
-        public async ValueTask<ActionResult<PositionDto>> UpdatePositionAsync([FromForm]UpdatePositionCommand command)
+        [HttpPost("updatePosition")]
+        public async ValueTask<ActionResult<PositionDto>> UpdatePositionAsync([FromForm] UpdatePositionCommand command)
         {
             if (command.Id == null)
             {
@@ -48,3 +48,4 @@ namespace HRMS.Api.Controllers
         }
     }
 }
+
