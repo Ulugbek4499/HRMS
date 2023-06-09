@@ -1,5 +1,5 @@
 ﻿async function getDepartmentInfo() {
-    const departmentInfo = await fetch(`/api/Departments/GetAllDepartment`, {
+    const departmentInfo = await fetch('/api/Departments/GetAllDepartment', {
         method: 'GET',
         mode: 'cors'
     });
@@ -8,24 +8,23 @@
 }
 
 function createDepartmentInfo(departmentInfo) {
-    const model =
-        `
-    <tr id="department-${departmentInfo.department_id}">
-      <td id="name-${departmentInfo.department_id}">${departmentInfo.name}</td>
-      <td class="actions" data-th="">
-          <div class="text-right">
-              <button onclick="editDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                  Edit
-              </button>
-              <button onclick="deleteDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                  Delete
-              </button>
-              <button id="update-${departmentInfo.department_id}" style="display: none;" onclick="updateDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                  Save
-              </button>
-          </div>
-      </td>
-    </tr>`;
+    const model = `
+        <tr id="department-${departmentInfo.department_id}">
+            <td id="name-${departmentInfo.department_id}">${departmentInfo.name}</td>
+            <td class="actions" data-th="">
+                <div class="text-right">
+                    <button onclick="editDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                        Edit
+                    </button>
+                    <button onclick="deleteDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                        Delete
+                    </button>
+                    <button id="update-${departmentInfo.department_id}" style="display: none;" onclick="updateDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                        Save
+                    </button>
+                </div>
+            </td>
+        </tr>`;
 
     return model;
 }
@@ -39,12 +38,12 @@ async function deleteDepartment(department_id) {
     // Check if the request was successful and remove the department from the table
     if (response.ok) {
         const departmentRow = document.getElementById(`department-${department_id}`);
-        departmentRow.style.display = "none";
+        departmentRow.style.display = 'none';
     }
 }
 
 async function postDepartment() {
-    let departmentInput = document.getElementById("PostDepartment");
+    let departmentInput = document.getElementById('PostDepartment');
     let departmentName = departmentInput.value.trim();
 
     if (departmentName === '') {
@@ -57,7 +56,7 @@ async function postDepartment() {
         name: departmentName
     };
 
-    const response = await fetch(`/api/Departments/PostDepartment`, {
+    const response = await fetch('/api/Departments/PostDepartment', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -69,7 +68,7 @@ async function postDepartment() {
     if (response.ok) {
         const createdDepartment = await response.json();
         const model = createDepartmentInfo(createdDepartment);
-        const departmentTable = document.getElementById("DepartmentTable");
+        const departmentTable = document.getElementById('DepartmentTable');
         departmentTable.innerHTML += model;
 
         // Clear the input field after successfully creating the department
@@ -77,11 +76,10 @@ async function postDepartment() {
     }
 }
 
-
 async function displayDepartmentInfo() {
     const departments = await getDepartmentInfo();
 
-    const departmentTable = document.getElementById("DepartmentTable");
+    const departmentTable = document.getElementById('DepartmentTable');
     departmentTable.innerHTML = '';
 
     departments.forEach(element => {
@@ -93,7 +91,7 @@ async function displayDepartmentInfo() {
 async function editDepartment(department_id) {
     const nameElement = document.getElementById(`name-${department_id}`);
     const updateButton = document.getElementById(`update-${department_id}`);
-   
+
     // Get the current department name
     const currentName = nameElement.innerText;
 
@@ -108,17 +106,27 @@ async function editDepartment(department_id) {
     // Show the update button and hide the edit button
     updateButton.style.display = 'inline-block';
 }
+
 async function updateDepartment(department_id) {
     const nameElement = document.getElementById(`name-${department_id}`);
     const updateButton = document.getElementById(`update-${department_id}`);
 
     // Get the new department name from the input field
-    const newName = nameElement.firstChild.nextSibling.value;
+    const newName = nameElement.firstChild.value;
+
+    const requestBody = {
+        id: department_id,
+        name: newName
+    };
 
     // Send a request to update the department name
-    const response = await fetch(`/api/Departments/UpdateDepartment?departmentId=${department_id}&name=${newName}`, {
+    const response = await fetch(`/api/Departments/UpdateDepartment`, {
         method: 'PUT',
-        mode: 'cors'
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
     });
 
     if (response.ok) {
