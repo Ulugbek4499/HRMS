@@ -15,6 +15,9 @@ function createEmployeeInfo(employeeInfo) {
       <td>${employeeInfo.position.name}</td>
       <td class="actions" data-th="">
         <div class="text-right">
+         <button onclick="editEmployee('${employeeInfo.id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
+            Edit
+          </button>
           <button onclick="deleteEmployee('${employeeInfo.id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
             Delete
           </button>
@@ -32,12 +35,23 @@ async function populatePositions() {
     const positionDropdown = document.getElementById('PositionId');
     positionDropdown.innerHTML = '';
 
+    const EditedpositionDropdown = document.getElementById('EditPositionId');
+    EditedpositionDropdown.innerHTML = '';
+
+
     positions.forEach((position) => {
         const option = document.createElement('option');
-        option.value = position.positionId;
+        option.value = position.position_id;
         option.textContent = position.name;
-
         positionDropdown.appendChild(option);
+    });
+
+    positions.forEach((position) => {
+        const option = document.createElement('option');
+        option.value = position.position_id;
+        option.textContent = position.name;
+        EditedpositionDropdown.appendChild(option);
+
     });
 }
 
@@ -108,6 +122,26 @@ function handleCreateEmployee() {
     createEmployee();
 }
 
+
+function editEmployee(id) {
+
+    document.getElementById("InputEditEmployeeId").value = `${id}`;
+
+    const createEmployeeForm = document.getElementById("EditEmployeeForm");
+    createEmployeeForm.style.display = "block";
+
+}
+
+
+
+
+
+
+
+
+
+
+
 // Function to handle the button click event for adding a new employee
 function handleAddNewEmployee() {
     // Show the create employee form
@@ -119,12 +153,21 @@ function handleAddNewEmployee() {
     addNewEmployeeButton.style.display = "none";
 }
 
+
+
+
+
+
+// Add an event listener to the create button
 const createButton = document.getElementById("CreateEmployee");
 createButton.addEventListener("click", handleCreateEmployee);
 
+// Add an event listener to the "Add New Employee" button
 const addNewEmployeeButton = document.getElementById("AddNewEmployee");
 addNewEmployeeButton.addEventListener("click", handleAddNewEmployee);
 
+// Populate the positions dropdown on page load
 populatePositions();
--
+
+// Display the existing employee information on page load
 displayEmployeeInfo();
