@@ -58,7 +58,7 @@ namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
 
         private void ValidateEmployeeIsNotNull(UpdateEmployeeCommand request, Employee? maybeEmployee)
         {
-            if (maybeEmployee != null)
+            if (maybeEmployee == null)
             {
                 throw new AlreadyExistsException(nameof(Employee), request.Name);
             }
