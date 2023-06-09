@@ -1,18 +1,16 @@
-async function getSalaryInfo()
-{
+async function getSalaryInfo() {
     const salaryInfo = await fetch(`/api/SalaryInfo/GetAllSalaryInfo`,
-    {
-        method: 'GET', 
-        mode: 'cors'
-  });
+        {
+            method: 'GET',
+            mode: 'cors'
+        });
 
-  return salaryInfo.json();
+    return salaryInfo.json();
 }
 
-function CreateSalaryInfo(salaryInfo)
-{
-  const model= 
-  `<tr>
+function CreateSalaryInfo(salaryInfo) {
+    const model =
+        `<tr>
           <td>${salaryInfo.name}</td>
           <td>${salaryInfo.positionName}</td>
           <td>${salaryInfo.fixedWorkingHours}</td>
@@ -22,22 +20,20 @@ function CreateSalaryInfo(salaryInfo)
     </tr>
   `;
 
-  return model;
+    return model;
 }
 
-async function DisplaySalaryInfo()
-{
+async function DisplaySalaryInfo() {
     const salaries = await getSalaryInfo();
 
     document.getElementById("SalaryTable").innerHTML = null;
 
-    salaries.forEach(element =>
-    {
+    salaries.forEach(element => {
         const model = CreateSalaryInfo(element);
 
         document.getElementById("SalaryTable").innerHTML += model;
 
     });
-} 
+}
 
 DisplaySalaryInfo();
