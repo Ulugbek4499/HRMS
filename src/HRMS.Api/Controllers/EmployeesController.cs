@@ -26,16 +26,16 @@ namespace HRMS.Api.Controllers
         }
 
         [HttpGet("[action]")]
-        [LazyCache(10, 50)]
         public async ValueTask<ActionResult<EmployeeDto[]>> GetAllEmployee()
         {
             return await Mediator.Send(new GetEmployeesQuery());
         }
 
-        [HttpPut("[action]")]
-        public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync(Guid EmployeeId, UpdateEmployeeCommand command)
+        //[HttpPut("[action]")]
+        [HttpPost("updateEmployee")]
+        public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
         {
-            if (EmployeeId == null)
+            if (command.Id == null)
             {
                 return BadRequest();
             }
@@ -50,3 +50,4 @@ namespace HRMS.Api.Controllers
         }
     }
 }
+
