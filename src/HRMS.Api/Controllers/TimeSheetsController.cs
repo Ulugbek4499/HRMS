@@ -30,10 +30,10 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetTimeSheetsQuery());
         }
 
-        [HttpPut("[action]")]
-        public async ValueTask<ActionResult<TimeSheetDto>> UpdateTimeSheetAsync(Guid TimeSheetId, UpdateTimeSheetCommand command)
+        [HttpPost("updateTimeSheet")]
+        public async ValueTask<ActionResult<TimeSheetDto>> UpdateTimeSheetAsync([FromForm] UpdateTimeSheetCommand command)
         {
-            if (TimeSheetId == null)
+            if (command.Id == null)
             {
                 return BadRequest();
             }
