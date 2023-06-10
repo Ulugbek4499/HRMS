@@ -12,17 +12,17 @@ function createDepartmentInfo(departmentInfo) {
         <tr id="department-${departmentInfo.department_id}">
             <td id="name-${departmentInfo.department_id}">${departmentInfo.name}</td>
             <td class="actions" data-th="">
-                <div class="text-right">
-                    <button onclick="editDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                        Edit
-                    </button>
-                    <button onclick="deleteDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                        Delete
-                    </button>
-                    <button id="update-${departmentInfo.department_id}" style="display: none;" onclick="updateDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                        Save
-                    </button>
-                </div>
+               <div class="text-right">
+    <button onclick="editDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-warning text-dark btn-md mb-2">
+        Edit
+    </button>
+    <button onclick="deleteDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-danger btn-md mb-2">
+        Delete
+    </button>
+    <button id="update-${departmentInfo.department_id}" style="display: none;" onclick="updateDepartment('${departmentInfo.department_id}')" class="btn btn-white border-secondary bg-success btn-md mb-2">
+        Update
+    </button>
+</div>
             </td>
         </tr>`;
 
