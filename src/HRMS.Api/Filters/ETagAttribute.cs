@@ -10,6 +10,7 @@ namespace HRMS.Api.Filters
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var originalBodyStream = context.HttpContext.Response.Body;
+
             try
             {
                 using (var responseBody = new MemoryStream())
@@ -28,6 +29,7 @@ namespace HRMS.Api.Filters
                         if (requestETag == eTag)
                         {
                             context.Result = new StatusCodeResult((int)HttpStatusCode.NotModified);
+
                             return;
                         }
                     }
@@ -36,6 +38,7 @@ namespace HRMS.Api.Filters
                     await responseBody.CopyToAsync(originalBodyStream);
                 }
             }
+
             finally
             {
                 context.HttpContext.Response.Body = originalBodyStream;
@@ -48,10 +51,9 @@ namespace HRMS.Api.Filters
             {
                 var hashBytes = md5.ComputeHash(stream);
                 var eTag = Convert.ToBase64String(hashBytes);
+
                 return eTag;
             }
         }
     }
-
-
 }

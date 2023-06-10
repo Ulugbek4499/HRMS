@@ -16,7 +16,9 @@ namespace HRMS.Api.Filters
             _absoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow;
         }
 
-        public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+        public override async Task OnActionExecutionAsync(
+            ActionExecutingContext context, 
+            ActionExecutionDelegate next)
         {
             _cache = context.HttpContext.RequestServices.GetRequiredService<IAppCache>();
             _Key = context.HttpContext.Request.Path;
@@ -27,7 +29,6 @@ namespace HRMS.Api.Filters
                 c.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(_absoluteExpirationRelativeToNow);
 
                 return next();
-
             });
 
             if (res != null)

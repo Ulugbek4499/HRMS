@@ -12,7 +12,6 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class DepartmentsController : ApiControllerBase
     {
-
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> PostDepartmentAsync(CreateDepartmentCommand command)
         {
@@ -24,7 +23,6 @@ namespace HRMS.Api.Controllers
         {
             return await Mediator.Send(new GetDepartmentQuery(departmentId));
         }
-
 
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()

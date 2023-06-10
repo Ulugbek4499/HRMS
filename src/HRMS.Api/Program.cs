@@ -12,14 +12,12 @@ Log.Logger = new LoggerConfiguration()
                 .CreateLogger();
 
 builder.Services.AddControllers();
-
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("RedisDB");
 });
 
 builder.Services.AddLazyCache();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationService();
