@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace HRMS.Api.Filters
 {
-    public class LazyCacheAttribute: ActionFilterAttribute
+    public class LazyCacheAttribute : ActionFilterAttribute
     {
         private static IAppCache _cache;
         private string _Key;
@@ -30,7 +30,7 @@ namespace HRMS.Api.Filters
 
             });
 
-            if(res != null)
+            if (res != null)
             {
                 context.Result = res.Result;
             }

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HRMS.Application.Common.Interfaces;
-using HRMS.Application.UseCases.Positions.Models;
 using HRMS.Application.UseCases.SalaryInfo.Models;
 using HRMS.Domain.Entities.Employees;
 using MediatR;
@@ -28,7 +22,7 @@ namespace HRMS.Application.UseCases.SalaryInfo.Query
         public async Task<SalaryInfoDto[]> Handle(GetSalaryInfoQuery request, CancellationToken cancellationToken)
         {
             List<Employee> employees = _context.Employees.ToList();
-            List<SalaryInfoDto> salaryInfoDtos= new List<SalaryInfoDto>();
+            List<SalaryInfoDto> salaryInfoDtos = new List<SalaryInfoDto>();
 
             foreach (Employee empl in employees)
             {
@@ -44,7 +38,7 @@ namespace HRMS.Application.UseCases.SalaryInfo.Query
                     FixedWorkingHours = empl.Position.MonthlyWorkingHours,
                     FixedSalary = empl.Position.Salary,
                     ActualWorkingHours = TotalTime,
-                    ActualSalary= empl.Position.Salary* (decimal)TotalTime / empl.Position.MonthlyWorkingHours,
+                    ActualSalary = empl.Position.Salary * (decimal)TotalTime / empl.Position.MonthlyWorkingHours,
                 });
             }
 

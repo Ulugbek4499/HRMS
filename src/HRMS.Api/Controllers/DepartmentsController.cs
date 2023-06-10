@@ -1,5 +1,4 @@
-﻿using HRMS.Api.Filters;
-using HRMS.Application.UseCases.Departments.Commands.CreateDepartment;
+﻿using HRMS.Application.UseCases.Departments.Commands.CreateDepartment;
 using HRMS.Application.UseCases.Departments.Commands.DelateDepartment;
 using HRMS.Application.UseCases.Departments.Commands.UpdateDepartment;
 using HRMS.Application.UseCases.Departments.Models;
@@ -15,7 +14,7 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class DepartmentsController : ApiControllerBase
     {
- 
+
         private readonly IAppCache _lazyCache;
         private const string My_Key = "My_Key";
 
@@ -37,7 +36,7 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetDepartmentQuery(departmentId));
         }
 
-       
+
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()
         {
@@ -46,7 +45,7 @@ namespace HRMS.Api.Controllers
                 c.SetAbsoluteExpiration(TimeSpan.FromSeconds((20)));
                 return await Mediator.Send(new GetDepartmentsQuery());
             });
-           
+
         }
 
         [HttpPut("[action]")]

@@ -1,5 +1,4 @@
 ﻿using HRMS.Application.UseCases.Positions.Models;
-using HRMS.Application.UseCases.TimeSheets.Models;
 using Newtonsoft.Json;
 
 namespace HRMS.Application.UseCases.Employees.Models

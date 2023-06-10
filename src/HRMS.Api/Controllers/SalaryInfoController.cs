@@ -1,6 +1,4 @@
 ﻿using HRMS.Api.Filters;
-using HRMS.Application.UseCases.Positions.Models;
-using HRMS.Application.UseCases.Positions.Queries.GetPositions;
 using HRMS.Application.UseCases.SalaryInfo.Models;
 using HRMS.Application.UseCases.SalaryInfo.Query;
 using Microsoft.AspNetCore.Mvc;
