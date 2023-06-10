@@ -15,6 +15,5 @@ namespace HRMS.Api.Controllers
         {
             return await Mediator.Send(new GetSalaryInfoQuery());
         }
-
     }
 }
