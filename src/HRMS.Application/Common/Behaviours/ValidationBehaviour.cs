@@ -34,5 +34,4 @@ namespace HRMS.Application.Common.Behaviours
             return await next();
         }
     }
-
 }

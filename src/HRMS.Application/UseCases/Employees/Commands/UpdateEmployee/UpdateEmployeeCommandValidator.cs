@@ -23,7 +23,6 @@ namespace HRMS.Application.UseCases.Employees.Commands.UpdateEmployee
             RuleFor(u => u.PhoneNumber)
                 .Must(ValidatePhone)
                 .Length(13).WithMessage("Please enter valid phone number like +998901234567");
-
         }
 
         private bool ValidatePhone(string phone)

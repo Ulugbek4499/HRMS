@@ -37,6 +37,5 @@ namespace HRMS.Application.UseCases.Positions.Queries.GetPosition
                 throw new NotFoundException(nameof(Position), request.positionId);
             }
         }
-
     }
 }

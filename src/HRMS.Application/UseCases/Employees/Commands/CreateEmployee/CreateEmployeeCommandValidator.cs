@@ -12,9 +12,13 @@ namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
 
             RuleFor(u => u.PhoneNumber)
                 .Must(ValidatePhone)
-                .Length(13).WithMessage("Please enter valid phone number like +998901234567");
+                .Length(13)
+                .WithMessage("Please enter valid phone number like +998901234567");
 
-            RuleFor(d => d.Name).NotEmpty().MaximumLength(50).WithMessage("Name is required");
+            RuleFor(d => d.Name)
+                .NotEmpty()
+                .MaximumLength(50)
+                .WithMessage("Name is required");
         }
 
         private bool ValidatePhone(string phone)

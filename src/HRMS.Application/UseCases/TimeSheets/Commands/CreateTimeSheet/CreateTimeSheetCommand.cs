@@ -27,7 +27,6 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.CreateTimeSheet
 
         async Task<TimeSheetDto> IRequestHandler<CreateTimeSheetCommand, TimeSheetDto>.Handle(CreateTimeSheetCommand request, CancellationToken cancellationToken)
         {
-
             Employee maybeEmployee =
                 _context.Employees.SingleOrDefault(p => p.Id.Equals(request.EmployeeId));
 
@@ -38,7 +37,6 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.CreateTimeSheet
                 Employee = maybeEmployee,
             };
 
-
             timeSheet = _context.TimeSheets.Add(timeSheet).Entity;
 
             await _context.SaveChangesAsync(cancellationToken);
@@ -46,5 +44,4 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.CreateTimeSheet
             return _mapper.Map<TimeSheetDto>(timeSheet);
         }
     }
-
 }

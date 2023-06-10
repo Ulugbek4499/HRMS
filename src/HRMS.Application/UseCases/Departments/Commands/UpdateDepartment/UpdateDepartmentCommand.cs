@@ -47,6 +47,5 @@ namespace HRMS.Application.UseCases.Departments.Commands.UpdateDepartment
                 throw new NotFoundException(nameof(Department), request.Id);
             }
         }
-
     }
 }

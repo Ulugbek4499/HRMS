@@ -6,20 +6,24 @@ namespace HRMS.Application.UseCases.TimeSheets.Commands.UpdateTimeSheet
     {
         public UpdateTimeSheetCommandValidator()
         {
-            RuleFor(t => t.Id).NotEmpty()
+            RuleFor(t => t.Id)
+                .NotEmpty()
                 .NotEqual((Guid)default)
                 .WithMessage("Id is required.");
 
-            RuleFor(t => t.EmployeeId).NotEmpty()
+            RuleFor(t => t.EmployeeId)
+                .NotEmpty()
                 .NotEqual((Guid)default)
                 .WithMessage("Employee id is required.");
 
-            RuleFor(t => t.WorkedHours).NotEqual((double)default)
-                .GreaterThan(0).WithMessage("Worked Hours is required.");
+            RuleFor(t => t.WorkedHours)
+                .NotEqual((double)default)
+                .GreaterThan(0)
+                .WithMessage("Worked Hours is required.");
 
-            RuleFor(t => t.WorkingDay).NotEqual((DateTimeOffset)default)
+            RuleFor(t => t.WorkingDay)
+                .NotEqual((DateTimeOffset)default)
                 .WithMessage("Working date is required.");
-
         }
     }
 }

@@ -41,7 +41,5 @@ namespace HRMS.Application.UseCases.Positions.Commands.DeletePosition
                 throw new NotFoundException(nameof(Position), request.positionId);
             }
         }
-
     }
-
 }

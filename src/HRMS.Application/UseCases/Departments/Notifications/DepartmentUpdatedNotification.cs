@@ -4,7 +4,6 @@ using Serilog;
 
 namespace HRMS.Application.UseCases.Departments.Notifications
 {
-
     public class DepartmentUpdatedNotification : INotification
     {
         public Department CurrentDepartment { get; set; }
@@ -22,5 +21,4 @@ namespace HRMS.Application.UseCases.Departments.Notifications
             return Task.CompletedTask;
         }
     }
-
 }

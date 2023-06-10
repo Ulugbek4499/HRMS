@@ -4,9 +4,7 @@ using HRMS.Application.UseCases.Departments.Commands.UpdateDepartment;
 using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartment;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartments;
-using LazyCache;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace HRMS.Api.Controllers
 {

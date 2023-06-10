@@ -39,6 +39,4 @@ namespace HRMS.Application.UseCases.Employees.Queries.GetEmployee
             }
         }
     }
-
-
 }

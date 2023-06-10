@@ -6,7 +6,10 @@ namespace HRMS.Application.UseCases.Departments.Commands.CreateDepartment
     {
         public CreateDepartmentCommandValidator()
         {
-            RuleFor(d => d.Name).NotEmpty().MaximumLength(50).WithMessage("Department name is required");
+            RuleFor(d => d.Name)
+                .NotEmpty()
+                .MaximumLength(50)
+                .WithMessage("Department name is required");
         }
     }
 }
