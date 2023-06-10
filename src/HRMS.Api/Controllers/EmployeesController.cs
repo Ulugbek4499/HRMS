@@ -30,7 +30,6 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetEmployeesQuery());
         }
 
-        //[HttpPut("[action]")]
         [HttpPost("updateEmployee")]
         public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
         {

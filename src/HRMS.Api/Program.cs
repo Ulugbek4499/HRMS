@@ -18,11 +18,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = builder.Configuration.GetConnectionString("RedisDB");
 });
 
-builder.Services.AddResponseCaching();
-builder.Services.AddOutputCache();
-builder.Services.AddMemoryCache();
 builder.Services.AddLazyCache();
-
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -38,16 +34,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseResponseCaching();
-app.UseOutputCache();
-
 app.UseFileServer();
 app.UseStaticFiles();
 app.UseDefaultFiles();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

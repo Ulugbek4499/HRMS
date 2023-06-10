@@ -15,18 +15,9 @@ namespace HRMS.Api.Controllers
     public class DepartmentsController : ApiControllerBase
     {
 
-        private readonly IAppCache _lazyCache;
-        private const string My_Key = "My_Key";
-
-        public DepartmentsController(IAppCache lazyCache)
-        {
-            _lazyCache = lazyCache;
-        }
-
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> PostDepartmentAsync(CreateDepartmentCommand command)
         {
-            _lazyCache.Remove(My_Key);
             return await Mediator.Send(command);
         }
 
@@ -40,30 +31,18 @@ namespace HRMS.Api.Controllers
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()
         {
-            return await _lazyCache.GetOrAddAsync(My_Key, async c =>
-            {
-                c.SetAbsoluteExpiration(TimeSpan.FromSeconds((20)));
                 return await Mediator.Send(new GetDepartmentsQuery());
-            });
-
         }
 
         [HttpPut("[action]")]
-        public async ValueTask<ActionResult<DepartmentDto>> UpdateDepartmentAsync(Guid departmentId, UpdateDepartmentCommand command)
+        public async ValueTask<ActionResult<DepartmentDto>> UpdateDepartmentAsync(UpdateDepartmentCommand command)
         {
-            if (departmentId == null)
-            {
-                return BadRequest();
-            }
-
-            _lazyCache.Remove(My_Key);
             return await Mediator.Send(command);
         }
 
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> DeleteDepartmentAsync(Guid departmentId)
         {
-            _lazyCache.Remove(My_Key);
             return await Mediator.Send(new DeleteDepartmentCommand(departmentId));
         }
     }
