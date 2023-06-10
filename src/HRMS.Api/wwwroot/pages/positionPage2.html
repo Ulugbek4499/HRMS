@@ -131,12 +131,19 @@
             margin-top: 20px;
             display: none;
         }
+        .bg-yellow {
+            background-color: yellow;
+        }
+
+        .bg-red {
+            background-color: red;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Position</h1>
+        <h1>Positions</h1>
 
         <table class="table">
             <thead>
@@ -182,7 +189,7 @@
 
         <form method="post" action="/api/Positions/updatePosition">
             <div id="EditPositionForm">
-                <div class="form-group">
+                <div class="form-group  d-none">
                     <label for="InputEditPositionId">Position Id</label>
                     <input name="Id" type="text" class="form-control" id="InputEditPositionId" placeholder="ID">
                 </div>
@@ -208,7 +215,7 @@
                         <!-- Dropdown options will be populated dynamically -->
                     </select>
                 </div>
-                <button type="submit" id="EditCreatePosition" class="btn btn-primary">Update</button>
+                <button type="submit" id="EditCreatePosition" class="btn btn-primary btn-success">Update</button>
             </div>
 
         </form>
