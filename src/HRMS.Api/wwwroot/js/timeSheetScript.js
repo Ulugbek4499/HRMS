@@ -16,12 +16,13 @@ function createTimeSheetInfo(timeSheetInfo) {
         <td>${timeSheetInfo.workedHours}</td>
         <td class="actions" data-th="">
             <div class="text-right">
-                <button onclick="editTimeSheet('${timeSheetInfo.timeSheet_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                    Edit
-                </button>
-                <button onclick="deleteTimeSheet('${timeSheetInfo.timeSheet_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                    Delete
-                </button>
+              <button onclick="editTimeSheet('${timeSheetInfo.timeSheet_id}')"class="btn btn-white border-secondary bg-warning text-dark btn-md mb-2">
+    Edit
+</button>
+<button onclick="deleteTimeSheet('${timeSheetInfo.timeSheet_id}')" class="btn btn-white border-secondary bg-danger btn-md mb-2">
+    Delete
+</button>
+
             </div>
         </td>
     </tr>`;
