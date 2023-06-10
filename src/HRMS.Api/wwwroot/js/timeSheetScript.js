@@ -1,4 +1,5 @@
-﻿async function getTimeSheetInfo() {
+﻿
+async function getTimeSheetInfo() {
     const timeSheetInfo = await fetch(`/api/TimeSheets/GetAllTimeSheet`, {
         method: 'GET',
         mode: 'cors',
@@ -6,7 +7,6 @@
 
     return timeSheetInfo.json();
 }
-
 
 function createTimeSheetInfo(timeSheetInfo) {
     const model = `
@@ -16,20 +16,18 @@ function createTimeSheetInfo(timeSheetInfo) {
         <td>${timeSheetInfo.workedHours}</td>
         <td class="actions" data-th="">
             <div class="text-right">
-              <button onclick="editTimeSheet('${timeSheetInfo.timeSheet_id}')"class="btn btn-white border-secondary bg-warning text-dark btn-md mb-2">
-    Edit
-</button>
-<button onclick="deleteTimeSheet('${timeSheetInfo.timeSheet_id}')" class="btn btn-white border-secondary bg-danger btn-md mb-2">
-    Delete
-</button>
-
+                <button onclick="editTimeSheet('${timeSheetInfo.timeSheet_id}')" class="btn btn-white border-secondary bg-warning text-dark btn-md mb-2">
+                    Edit
+                </button>
+                <button onclick="deleteTimeSheet('${timeSheetInfo.timeSheet_id}')" class="btn btn-white border-secondary bg-danger btn-md mb-2">
+                    Delete
+                </button>
             </div>
         </td>
     </tr>`;
 
     return model;
 }
-
 
 async function populateEmployees() {
     const response = await fetch(`/api/Employees/GetAllEmployee`);
@@ -67,7 +65,6 @@ async function deleteTimeSheet(timeSheet_id) {
         timeSheetRow.style.display = 'none';
     }
 }
-
 
 async function displayTimeSheetInfo() {
     const timeSheets = await getTimeSheetInfo();
@@ -119,18 +116,15 @@ async function createTimeSheet() {
     }
 }
 
-
 function handleCreateTimeSheet() {
     createTimeSheet();
 }
 
 function editTimeSheet(timeSheet_id) {
-
     document.getElementById("InputEditTimeSheetId").value = `${timeSheet_id}`;
 
     const createTimeSheetForm = document.getElementById("EditTimeSheetForm");
     createTimeSheetForm.style.display = "block";
-
 }
 
 function handleAddNewTimeSheet() {
