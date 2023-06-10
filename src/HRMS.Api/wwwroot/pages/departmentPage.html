@@ -133,17 +133,34 @@
             border-radius: 0.25rem;
         }
 
-        .table {
-            margin-top: 20px;
+        .table th {
+            position: relative;
+            cursor: pointer;
+            padding-right: 20px; /* Increase the padding to create space for the icon */
         }
 
-            .table th {
-                font-size: 1.2rem;
-                font-weight: 600;
+            .table th span {
+                display: inline-block;
             }
 
-            .table td {
-                vertical-align: middle;
+            .table th i {
+                position: absolute;
+                top: 50%;
+                right: 5px; /* Adjust the right value to position the icon */
+                transform: translateY(-50%);
+                transition: transform 0.2s ease-in-out;
+            }
+
+                .table th i.fa-sort {
+                    color: #ccc;
+                }
+
+            .table th.asc i {
+                transform: translateY(-50%) rotate(-90deg);
+            }
+
+            .table th.desc i {
+                transform: translateY(-50%) rotate(90deg);
             }
     </style>
 </head>
@@ -157,7 +174,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Department Name</th>
+                    <th onclick="sortDepartments()">
+                        <!-- Added onclick event for sorting -->
+                        <span>Department Name</span>
+                        <i id="departmentSortIcon" class="fas fa-sort"></i>
+                    </th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -174,6 +195,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap JavaScript -->
     <script src="../js/jquery-3.3.1.slim.min.js"></script>

@@ -76,8 +76,30 @@ async function postDepartment() {
     }
 }
 
+/*async function displayDepartmentInfo() {
+    const departments = await getDepartmentInfo();
+
+    const departmentTable = document.getElementById('DepartmentTable');
+    departmentTable.innerHTML = '';
+
+    departments.forEach(element => {
+        const model = createDepartmentInfo(element);
+        departmentTable.innerHTML += model;
+    });
+}*/
+
 async function displayDepartmentInfo() {
     const departments = await getDepartmentInfo();
+
+    // Sort the departments by name
+    departments.sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+
+        if (nameA < nameB) return isAscending ? -1 : 1;
+        if (nameA > nameB) return isAscending ? 1 : -1;
+        return 0;
+    });
 
     const departmentTable = document.getElementById('DepartmentTable');
     departmentTable.innerHTML = '';
@@ -137,5 +159,14 @@ async function updateDepartment(department_id) {
         updateButton.style.display = 'none';
     }
 }
+
+let isAscending = true;
+
+const departmentNameHeader = document.querySelector('.table th:first-child');
+
+departmentNameHeader.addEventListener('click', () => {
+    isAscending = !isAscending;
+    displayDepartmentInfo();
+});
 
 displayDepartmentInfo();
