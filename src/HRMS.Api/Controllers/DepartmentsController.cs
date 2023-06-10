@@ -5,6 +5,7 @@ using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartment;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartments;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace HRMS.Api.Controllers
 {
@@ -25,6 +26,7 @@ namespace HRMS.Api.Controllers
         }
 
         [HttpGet("[action]")]
+        [EnableRateLimiting("TokenBucket")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()
         {
                 return await Mediator.Send(new GetDepartmentsQuery());

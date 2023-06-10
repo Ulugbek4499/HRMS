@@ -1,42 +1,49 @@
+using System.Threading.RateLimiting;
+using HRMS.Api.Services;
 using HRMS.Application;
 using HRMS.Infrastructure;
+using Microsoft.AspNetCore.RateLimiting;
 using Serilog;
 
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
-var builder = WebApplication.CreateBuilder(args);
-
-Log.Logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .ReadFrom.Configuration(builder.Configuration)
-                .CreateLogger();
-
-builder.Services.AddControllers();
-builder.Services.AddStackExchangeRedisCache(options =>
+public class Program
 {
-    options.Configuration = builder.Configuration.GetConnectionString("RedisDB");
-});
+    private static void Main(string[] args)
+    {
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-builder.Services.AddLazyCache();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddApplicationService();
-builder.Services.AddInfrastructureService(builder.Configuration);
+        var builder = WebApplication.CreateBuilder(args);
+        SerilogService.SerilogSettings(builder.Configuration);
 
-var app = builder.Build();
+        builder.Services.AddControllers();
+        builder.Services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = builder.Configuration.GetConnectionString("RedisDB");
+        });
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.DisplayRequestDuration());
+        builder.Services.AddLazyCache();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddApplicationService();
+        builder.Services.AddRateLimiterService();
+        builder.Services.AddInfrastructureService(builder.Configuration);
+
+
+        var app = builder.Build();
+        app.UseRateLimiter();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.DisplayRequestDuration());
+        }
+
+        app.UseHttpsRedirection();
+        app.UseFileServer();
+        app.UseStaticFiles();
+        app.UseDefaultFiles();
+        app.UseAuthorization();
+        app.MapControllers();
+
+        app.Run();
+    }
 }
-
-app.UseHttpsRedirection();
-app.UseFileServer();
-app.UseStaticFiles();
-app.UseDefaultFiles();
-app.UseAuthorization();
-app.MapControllers();
-
-app.Run();
-
