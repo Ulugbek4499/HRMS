@@ -15,14 +15,14 @@ function createPositionInfo(positionInfo) {
        <td>${positionInfo.salary}</td>
        <td>${positionInfo.monthlyWorkingHours}</td>
        <td class="actions" data-th="">
-          <div class="text-right">
-              <button onclick="editPosition('${positionInfo.position_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                  Edit
-              </button>
-              <button onclick="deletePosition('${positionInfo.position_id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                  Delete
-              </button>
-          </div>
+        <div class="text-right">
+         <button onclick="editPosition('${positionInfo.position_id}')" class="btn btn-white border-secondary bg-warning text-dark btn-md mb-2">
+    Edit
+</button>
+<button onclick="deletePosition('${positionInfo.position_id}')" class="btn btn-white border-secondary bg-danger btn-md mb-2">
+    Delete
+</button>
+</div>
       </td>
     </tr>`;
 
@@ -153,3 +153,4 @@ addNewPositionButton.addEventListener("click", handleAddNewPosition);
 populateDepartments();
 
 displayPositionInfo();
+
