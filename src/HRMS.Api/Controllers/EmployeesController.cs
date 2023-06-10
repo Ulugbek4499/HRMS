@@ -34,11 +34,6 @@ namespace HRMS.Api.Controllers
         [HttpPost("updateEmployee")]
         public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
         {
-            if (command.Id == null)
-            {
-                return BadRequest();
-            }
-
             return await Mediator.Send(command);
         }
 

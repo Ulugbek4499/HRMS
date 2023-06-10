@@ -33,11 +33,6 @@ namespace HRMS.Api.Controllers
         [HttpPost("updateTimeSheet")]
         public async ValueTask<ActionResult<TimeSheetDto>> UpdateTimeSheetAsync([FromForm] UpdateTimeSheetCommand command)
         {
-            if (command.Id == null)
-            {
-                return BadRequest();
-            }
-
             return await Mediator.Send(command);
         }
 
