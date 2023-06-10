@@ -15,12 +15,13 @@ function createEmployeeInfo(employeeInfo) {
       <td>${employeeInfo.position.name}</td>
       <td class="actions" data-th="">
         <div class="text-right">
-         <button onclick="editEmployee('${employeeInfo.id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-            Edit
-          </button>
-          <button onclick="deleteEmployee('${employeeInfo.id}')" class="btn btn-white border-secondary bg-white btn-md mb-2">
-            Delete
-          </button>
+         <button onclick="editEmployee('${employeeInfo.id}')" class="btn btn-white border-secondary bg-warning text-dark btn-md mb-2">
+    Edit
+</button>
+<button onclick="deleteEmployee('${employeeInfo.id}')"class="btn btn-white border-secondary bg-danger btn-md mb-2">
+    Delete
+</button>
+
         </div>
       </td>
     </tr>`;
