@@ -20,12 +20,12 @@ public class Program
             options.Configuration = builder.Configuration.GetConnectionString("RedisDB");
         });
 
-        builder.Services.AddLazyCache();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+       // builder.Services.AddSwaggerGen();
         builder.Services.AddApplicationService();
         builder.Services.AddRateLimiterService();
         builder.Services.AddInfrastructureService(builder.Configuration);
+        builder.Services.AddLazyCache();
 
 
         var app = builder.Build();

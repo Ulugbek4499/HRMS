@@ -1,4 +1,5 @@
-﻿using HRMS.Application.UseCases.Departments.Commands.CreateDepartment;
+﻿using HRMS.Api.Filters;
+using HRMS.Application.UseCases.Departments.Commands.CreateDepartment;
 using HRMS.Application.UseCases.Departments.Commands.DelateDepartment;
 using HRMS.Application.UseCases.Departments.Commands.UpdateDepartment;
 using HRMS.Application.UseCases.Departments.Models;
@@ -13,6 +14,7 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class DepartmentsController : ApiControllerBase
     {
+        [RemoveLazyCache]
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> PostDepartmentAsync(CreateDepartmentCommand command)
         {
@@ -25,6 +27,7 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetDepartmentQuery(departmentId));
         }
 
+        [AddLazyCache]
         [HttpGet("[action]")]
         [EnableRateLimiting("TokenBucket")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()
@@ -32,12 +35,14 @@ namespace HRMS.Api.Controllers
                 return await Mediator.Send(new GetDepartmentsQuery());
         }
 
+        [RemoveLazyCache]
         [HttpPut("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> UpdateDepartmentAsync(UpdateDepartmentCommand command)
         {
             return await Mediator.Send(command);
         }
 
+        [RemoveLazyCache]
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> DeleteDepartmentAsync(Guid departmentId)
         {

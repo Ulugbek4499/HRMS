@@ -1,4 +1,5 @@
-﻿using HRMS.Application.UseCases.Positions.Commands.CreatePosition;
+﻿using HRMS.Api.Filters;
+using HRMS.Application.UseCases.Positions.Commands.CreatePosition;
 using HRMS.Application.UseCases.Positions.Commands.DeletePosition;
 using HRMS.Application.UseCases.Positions.Commands.UpdatePosition;
 using HRMS.Application.UseCases.Positions.Models;
@@ -12,6 +13,7 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class PositionsController : ApiControllerBase
     {
+        [RemoveLazyCache]
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<PositionDto>> PostPositionAsync(CreatePositionCommand command)
         {
@@ -24,18 +26,22 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetPositionQuery(PositionId));
         }
 
+        [AddLazyCache]
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<PositionDto[]>> GetAllPosition()
         {
             return await Mediator.Send(new GetPositionsQuery());
         }
 
+        [RemoveLazyCache]
         [HttpPost("updatePosition")]
         public async ValueTask<ActionResult<PositionDto>> UpdatePositionAsync([FromForm] UpdatePositionCommand command)
         {
+           
             return await Mediator.Send(command);
         }
 
+        [RemoveLazyCache]
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<PositionDto>> DeletePositionAsync(Guid PositionId)
         {

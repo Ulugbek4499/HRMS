@@ -1,10 +1,12 @@
-﻿using HRMS.Application.UseCases.Employees.Commands.CreateEmployee;
+﻿using HRMS.Api.Filters;
+using HRMS.Application.UseCases.Employees.Commands.CreateEmployee;
 using HRMS.Application.UseCases.Employees.Commands.DeleteEmployee;
 using HRMS.Application.UseCases.Employees.Commands.UpdateEmployee;
 using HRMS.Application.UseCases.Employees.Models;
 using HRMS.Application.UseCases.Employees.Queries.GetEmployee;
 using HRMS.Application.UseCases.Employees.Queries.GetEmployees;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HRMS.Api.Controllers
 {
@@ -12,6 +14,7 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class EmployeesController : ApiControllerBase
     {
+        [RemoveLazyCache]
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> PostEmployeeAsync(CreateEmployeeCommand command)
         {
@@ -24,18 +27,26 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetEmployeeQuery(EmployeeId));
         }
 
+        [AddLazyCache]
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<EmployeeDto[]>> GetAllEmployee()
         {
             return await Mediator.Send(new GetEmployeesQuery());
         }
 
+        [RemoveLazyCache]
         [HttpPost("updateEmployee")]
-        public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
+        public async ValueTask<IActionResult> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
         {
-            return await Mediator.Send(command);
+            string rootPath = _hostEnviroment.WebRootPath;
+            string path = Path.Combine(rootPath, "pages/employeePage2.html");
+            var html= System.IO.File.ReadAllText(path);
+            await Mediator.Send(command);
+
+            return new ContentResult { Content = html, ContentType = "text/html", StatusCode = 200 };
         }
 
+        [RemoveLazyCache]
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> DeleteEmployeeAsync(Guid EmployeeId)
         {

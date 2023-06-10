@@ -46,9 +46,9 @@ namespace HRMS.Api.Services
                     partition =>
                     new FixedWindowRateLimiterOptions
                     {
-                        PermitLimit = 10,
+                        PermitLimit = 100,
                         AutoReplenishment = true,
-                        Window = TimeSpan.FromSeconds(10),
+                        Window = TimeSpan.FromSeconds(100),
                     });
             });
 
