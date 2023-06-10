@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,6 +39,93 @@
             </tbody>
         </table>
 
+    </div>-->
+<!-- Bootstrap JavaScript -->
+<!--<script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="../js/departmentScript.js"></script>
+</body>
+
+</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-control {
+            width: 100%;
+            height: calc(1.5em + 0.75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            border-color: #ced4da;
+        }
+
+        .btn-primary {
+            padding: 0.375rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+            .table th {
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+
+            .table td {
+                vertical-align: middle;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Departments</h1>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input id="PostDepartment" class="form-control" placeholder="Enter department name">
+            </div>
+            <div class="col-md-6">
+                <button onclick="postDepartment()" class="btn btn-primary">Add New Department</button>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Department Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="DepartmentTable">
+            </tbody>
+        </table>
     </div>
 
     <!-- Bootstrap JavaScript -->
