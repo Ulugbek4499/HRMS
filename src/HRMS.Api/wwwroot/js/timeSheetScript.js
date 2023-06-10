@@ -105,19 +105,15 @@ async function createTimeSheet() {
     });
 
     if (response.ok) {
-        // Time sheet created successfully, update the time sheet table
         displayTimeSheetInfo();
 
-        // Reset input fields
         employeeIdInput.value = '';
         workingDayInput.value = '';
         workedHoursInput.value = '';
 
-        // Hide the create time sheet form
         const createTimeSheetForm = document.getElementById('CreateTimeSheetForm');
         createTimeSheetForm.style.display = 'none';
 
-        // Show the "Add New TimeSheet" button
         const addNewTimeSheetButton = document.getElementById('AddNewTimeSheet');
         addNewTimeSheetButton.style.display = 'block';
     }

@@ -35,7 +35,6 @@ async function deleteDepartment(department_id) {
         mode: 'cors'
     });
 
-    // Check if the request was successful and remove the department from the table
     if (response.ok) {
         const departmentRow = document.getElementById(`department-${department_id}`);
         departmentRow.style.display = 'none';
@@ -47,7 +46,6 @@ async function postDepartment() {
     let departmentName = departmentInput.value.trim();
 
     if (departmentName === '') {
-        // Display an error message or handle the empty department name case as needed
         console.log('Department name cannot be empty');
         return;
     }
@@ -71,27 +69,14 @@ async function postDepartment() {
         const departmentTable = document.getElementById('DepartmentTable');
         departmentTable.innerHTML += model;
 
-        // Clear the input field after successfully creating the department
         departmentInput.value = '';
     }
 }
 
-/*async function displayDepartmentInfo() {
-    const departments = await getDepartmentInfo();
-
-    const departmentTable = document.getElementById('DepartmentTable');
-    departmentTable.innerHTML = '';
-
-    departments.forEach(element => {
-        const model = createDepartmentInfo(element);
-        departmentTable.innerHTML += model;
-    });
-}*/
 
 async function displayDepartmentInfo() {
     const departments = await getDepartmentInfo();
 
-    // Sort the departments by name
     departments.sort((a, b) => {
         const nameA = a.name.toUpperCase();
         const nameB = b.name.toUpperCase();
@@ -114,18 +99,14 @@ async function editDepartment(department_id) {
     const nameElement = document.getElementById(`name-${department_id}`);
     const updateButton = document.getElementById(`update-${department_id}`);
 
-    // Get the current department name
     const currentName = nameElement.innerText;
 
-    // Create an input field to edit the name
     const inputField = document.createElement('input');
     inputField.value = currentName;
 
-    // Replace the name with the input field
     nameElement.innerHTML = '';
     nameElement.appendChild(inputField);
 
-    // Show the update button and hide the edit button
     updateButton.style.display = 'inline-block';
 }
 
@@ -133,7 +114,6 @@ async function updateDepartment(department_id) {
     const nameElement = document.getElementById(`name-${department_id}`);
     const updateButton = document.getElementById(`update-${department_id}`);
 
-    // Get the new department name from the input field
     const newName = nameElement.firstChild.value;
 
     const requestBody = {
@@ -141,7 +121,6 @@ async function updateDepartment(department_id) {
         name: newName
     };
 
-    // Send a request to update the department name
     const response = await fetch(`/api/Departments/UpdateDepartment`, {
         method: 'PUT',
         mode: 'cors',
@@ -152,10 +131,8 @@ async function updateDepartment(department_id) {
     });
 
     if (response.ok) {
-        // Update the department name in the table
         nameElement.innerHTML = newName;
 
-        // Hide the update button and show the edit button
         updateButton.style.display = 'none';
     }
 }

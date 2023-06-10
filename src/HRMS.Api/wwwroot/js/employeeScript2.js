@@ -101,24 +101,20 @@ async function createEmployee() {
     });
 
     if (response.ok) {
-        // Employee created successfully, update the employee table
         displayEmployeeInfo();
 
         nameInput.value = '';
         phoneNumberInput.value = '';
         positionIdInput.value = '';
 
-        // Hide the create employee form
         const createEmployeeForm = document.getElementById("CreateEmployeeForm");
         createEmployeeForm.style.display = "none";
 
-        // Show the "Add New Employee" button
         const addNewEmployeeButton = document.getElementById("AddNewEmployee");
         addNewEmployeeButton.style.display = "block";
     }
 }
 
-// Function to handle the button click event for creating an employee
 function handleCreateEmployee() {
     createEmployee();
 }
@@ -143,13 +139,10 @@ function editEmployee(id) {
 
 
 
-// Function to handle the button click event for adding a new employee
 function handleAddNewEmployee() {
-    // Show the create employee form
     const createEmployeeForm = document.getElementById("CreateEmployeeForm");
     createEmployeeForm.style.display = "block";
 
-    // Hide the "Add New Employee" button
     const addNewEmployeeButton = document.getElementById("AddNewEmployee");
     addNewEmployeeButton.style.display = "none";
 }
@@ -159,16 +152,12 @@ function handleAddNewEmployee() {
 
 
 
-// Add an event listener to the create button
 const createButton = document.getElementById("CreateEmployee");
 createButton.addEventListener("click", handleCreateEmployee);
 
-// Add an event listener to the "Add New Employee" button
 const addNewEmployeeButton = document.getElementById("AddNewEmployee");
 addNewEmployeeButton.addEventListener("click", handleAddNewEmployee);
 
-// Populate the positions dropdown on page load
 populatePositions();
 
-// Display the existing employee information on page load
 displayEmployeeInfo();

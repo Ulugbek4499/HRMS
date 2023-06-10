@@ -106,16 +106,13 @@ async function createPosition() {
 
 
     if (response.ok) {
-        // Position created successfully, update the position table
         displayPositionInfo();
 
-        // Reset input fields
         nameInput.value = '';
         salaryInput.value = '';
         monthlyHoursInput.value = '';
         departmentIdInput.value = '';
 
-        // Hide the create position form
         const createPositionForm = document.getElementById("CreatePositionForm");
         createPositionForm.style.display = "none";
     }
