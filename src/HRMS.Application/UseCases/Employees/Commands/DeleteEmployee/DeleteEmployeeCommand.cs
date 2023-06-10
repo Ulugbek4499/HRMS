@@ -2,6 +2,7 @@
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
 using HRMS.Application.UseCases.Employees.Models;
+using HRMS.Application.UseCases.Employees.Notifications;
 using HRMS.Domain.Entities.Employees;
 using MediatR;
 
@@ -13,11 +14,13 @@ namespace HRMS.Application.UseCases.Employees.Commands.DeleteEmployee
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public DeleteEmployeeCommandHandler(IApplicationDbContext context, IMapper mapper)
+        public DeleteEmployeeCommandHandler(IApplicationDbContext context, IMapper mapper, IMediator mediator)
         {
             _context = context;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         public async Task<EmployeeDto> Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
@@ -30,6 +33,8 @@ namespace HRMS.Application.UseCases.Employees.Commands.DeleteEmployee
             _context.Employees.Remove(maybeEmployee);
 
             await _context.SaveChangesAsync(cancellationToken);
+
+            await _mediator.Publish(new EmployeeDeletedNotification(maybeEmployee.Name));
 
             return _mapper.Map<EmployeeDto>(maybeEmployee);
         }

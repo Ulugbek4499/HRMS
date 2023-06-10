@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using HRMS.Application.Common.Exceptions;
 using HRMS.Application.Common.Interfaces;
+using HRMS.Application.UseCases.Departments.Notifications;
 using HRMS.Application.UseCases.Employees.Models;
+using HRMS.Application.UseCases.Employees.Notifications;
 using HRMS.Domain.Entities.Employees;
 using HRMS.Domain.Entities.Positions;
 using MediatR;
@@ -19,11 +21,13 @@ namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public CreateEmployeeCommandHandler(IApplicationDbContext context, IMapper mapper)
+        public CreateEmployeeCommandHandler(IApplicationDbContext context, IMapper mapper, IMediator mediator)
         {
             _context = context;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         public async Task<EmployeeDto> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
@@ -46,6 +50,8 @@ namespace HRMS.Application.UseCases.Employees.Commands.CreateEmployee
 
             employee = _context.Employees.Add(employee).Entity;
             await _context.SaveChangesAsync(cancellationToken);
+
+            await _mediator.Publish(new EmployeeCreatedNotification(employee.Name));
 
             return _mapper.Map<EmployeeDto>(employee);
         }
