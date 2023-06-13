@@ -11,12 +11,10 @@ namespace HRMS.Application.UseCases.SalaryInfo.Query
     public class GetSalaryInfoQueryHandler : IRequestHandler<GetSalaryInfoQuery, SalaryInfoDto[]>
     {
         private readonly IApplicationDbContext _context;
-        private readonly IMapper _mapper;
 
-        public GetSalaryInfoQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public GetSalaryInfoQueryHandler(IApplicationDbContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<SalaryInfoDto[]> Handle(GetSalaryInfoQuery request, CancellationToken cancellationToken)

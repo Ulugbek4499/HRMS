@@ -12,10 +12,10 @@ namespace HRMS.Api.Services
             options.AddTokenBucketLimiter("TokenBucket", options =>
             {
 
-                options.TokenLimit = 10;
+                options.TokenLimit = 100;
                 options.ReplenishmentPeriod = TimeSpan.FromSeconds(15);
-                options.TokensPerPeriod = 5;
-                options.QueueLimit = 3;
+                options.TokensPerPeriod = 50;
+                options.QueueLimit = 30;
 
             });
 
@@ -46,9 +46,9 @@ namespace HRMS.Api.Services
                     partition =>
                     new FixedWindowRateLimiterOptions
                     {
-                        PermitLimit = 100,
+                        PermitLimit = 1000,
                         AutoReplenishment = true,
-                        Window = TimeSpan.FromSeconds(100),
+                        Window = TimeSpan.FromSeconds(1000),
                     });
             });
 

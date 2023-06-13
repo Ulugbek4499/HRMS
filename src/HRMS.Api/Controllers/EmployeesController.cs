@@ -14,7 +14,7 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class EmployeesController : ApiControllerBase
     {
-        [RemoveLazyCache]
+       // [RemoveLazyCache]
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> PostEmployeeAsync(CreateEmployeeCommand command)
         {
@@ -27,26 +27,22 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetEmployeeQuery(EmployeeId));
         }
 
-        [AddLazyCache]
+        //[AddLazyCache]
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<EmployeeDto[]>> GetAllEmployee()
         {
             return await Mediator.Send(new GetEmployeesQuery());
         }
 
-        [RemoveLazyCache]
+       // [RemoveLazyCache]
         [HttpPost("updateEmployee")]
-        public async ValueTask<IActionResult> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
+        public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
         {
-            string rootPath = _hostEnviroment.WebRootPath;
-            string path = Path.Combine(rootPath, "pages/employeePage2.html");
-            var html= System.IO.File.ReadAllText(path);
-            await Mediator.Send(command);
-
-            return new ContentResult { Content = html, ContentType = "text/html", StatusCode = 200 };
+          
+            return await Mediator.Send(command);
         }
 
-        [RemoveLazyCache]
+      //  [RemoveLazyCache]
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> DeleteEmployeeAsync(Guid EmployeeId)
         {
