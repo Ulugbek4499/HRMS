@@ -37,7 +37,7 @@ namespace HRMS.Api.Controllers
         }
 
         [HttpGet("[action]")]
-        public async ValueTask<ActionResult<PaginatedList<EmployeeDto>>> GetEmployeesWithPaginatedList(
+        public async ValueTask<ActionResult<PaginatedList<EmployeeDto>>> GetEmployeesWithPagination(
             [FromQuery] GetEmployeesWithPaginationQuery query)
         {
             return await Mediator.Send(query);
