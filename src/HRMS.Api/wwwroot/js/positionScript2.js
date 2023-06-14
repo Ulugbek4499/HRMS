@@ -208,7 +208,6 @@ function sortPositionBySalary() {
         table.tBodies[0].appendChild(row);
     });
 }
-
 function sortPositionByHours() {
     var table = document.querySelector('.table');
     var rows = Array.from(table.tBodies[0].rows);

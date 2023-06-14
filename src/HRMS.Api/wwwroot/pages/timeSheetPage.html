@@ -54,12 +54,18 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th onclick="sortEmployeeByNames()">
+                    <th onclick="sortTimeSheetByEmployees()">
                         <span> Employee Name </span>
-                        <i id="employeeNameSortIcon" class="fas fa-sort"></i>
+                        <i id="timeSheetEmployeeSortIcon" class="fas fa-sort"></i>
                     </th>
-                    <th>Working Day</th>
-                    <th>Worked Hours</th>
+                    <th onclick="sortTimeSheetByDays()">
+                        <span> Working Day </span>
+                        <i id="timeSheetDaySortIcon" class="fas fa-sort"></i>
+                    </th>
+                    <th onclick="sortTimeSheetByHours()">
+                        <span>Worked Hours </span>
+                        <i id="timeSheetHoursSortIcon" class="fas fa-sort"></i>
+                    </th>
                     <th>Actions</th>
                 </tr>
             </thead>

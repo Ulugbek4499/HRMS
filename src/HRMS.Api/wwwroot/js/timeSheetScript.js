@@ -141,10 +141,10 @@ createButton.addEventListener("click", handleCreateTimeSheet);
 const addNewTimeSheetButton = document.getElementById("AddNewTimeSheet");
 addNewTimeSheetButton.addEventListener("click", handleAddNewTimeSheet);
 
-function sortEmployeeByNames() {
+function sortTimeSheetByEmployees() {
     var table = document.querySelector('.table');
     var rows = Array.from(table.tBodies[0].rows);
-    var sortIcon = document.getElementById('employeeNameSortIcon');
+    var sortIcon = document.getElementById('timeSheetEmployeeSortIcon');
     var isAscending = sortIcon.classList.contains('asc');
 
     rows.sort(function (a, b) {
@@ -177,6 +177,80 @@ function sortEmployeeByNames() {
         table.tBodies[0].appendChild(row);
     });
 }
+function sortTimeSheetByDays() {
+    var table = document.querySelector('.table');
+    var rows = Array.from(table.tBodies[0].rows);
+    var sortIcon = document.getElementById('timeSheetDaySortIcon');
+    var isAscending = sortIcon.classList.contains('asc');
+
+    rows.sort(function (a, b) {
+        var dateA = new Date(a.cells[1].textContent.trim());
+        var dateB = new Date(b.cells[1].textContent.trim());
+
+        if (dateA < dateB) {
+            return -1;
+        } else if (dateA > dateB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    if (!isAscending) {
+        rows.reverse();
+        sortIcon.classList.remove('desc');
+        sortIcon.classList.add('asc');
+    } else {
+        sortIcon.classList.remove('asc');
+        sortIcon.classList.add('desc');
+    }
+
+    while (table.tBodies[0].firstChild) {
+        table.tBodies[0].removeChild(table.tBodies[0].firstChild);
+    }
+
+    rows.forEach(function (row) {
+        table.tBodies[0].appendChild(row);
+    });
+}
+
+function sortTimeSheetByHours() {
+    var table = document.querySelector('.table');
+    var rows = Array.from(table.tBodies[0].rows);
+    var sortIcon = document.getElementById('timeSheetHoursSortIcon');
+    var isAscending = sortIcon.classList.contains('asc');
+
+    rows.sort(function (a, b) {
+        var hoursA = parseInt(a.cells[2].textContent.trim());
+        var hoursB = parseInt(b.cells[2].textContent.trim());
+
+        if (hoursA < hoursB) {
+            return -1;
+        } else if (hoursA > hoursB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    if (!isAscending) {
+        rows.reverse();
+        sortIcon.classList.remove('desc');
+        sortIcon.classList.add('asc');
+    } else {
+        sortIcon.classList.remove('asc');
+        sortIcon.classList.add('desc');
+    }
+
+    while (table.tBodies[0].firstChild) {
+        table.tBodies[0].removeChild(table.tBodies[0].firstChild);
+    }
+
+    rows.forEach(function (row) {
+        table.tBodies[0].appendChild(row);
+    });
+}
+
 
 populateEmployees();
 
