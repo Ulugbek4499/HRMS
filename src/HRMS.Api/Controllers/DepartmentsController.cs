@@ -7,8 +7,6 @@ using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartment;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartments;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartmentsWithPagination;
-using LazyCache;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 
