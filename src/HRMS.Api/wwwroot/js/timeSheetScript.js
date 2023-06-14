@@ -141,6 +141,43 @@ createButton.addEventListener("click", handleCreateTimeSheet);
 const addNewTimeSheetButton = document.getElementById("AddNewTimeSheet");
 addNewTimeSheetButton.addEventListener("click", handleAddNewTimeSheet);
 
+function sortEmployeeByNames() {
+    var table = document.querySelector('.table');
+    var rows = Array.from(table.tBodies[0].rows);
+    var sortIcon = document.getElementById('employeeNameSortIcon');
+    var isAscending = sortIcon.classList.contains('asc');
+
+    rows.sort(function (a, b) {
+        var nameA = a.cells[0].textContent.trim().toUpperCase();
+        var nameB = b.cells[0].textContent.trim().toUpperCase();
+
+        if (nameA < nameB) {
+            return -1;
+        } else if (nameA > nameB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    if (!isAscending) {
+        rows.reverse();
+        sortIcon.classList.remove('desc');
+        sortIcon.classList.add('asc');
+    } else {
+        sortIcon.classList.remove('asc');
+        sortIcon.classList.add('desc');
+    }
+
+    while (table.tBodies[0].firstChild) {
+        table.tBodies[0].removeChild(table.tBodies[0].firstChild);
+    }
+
+    rows.forEach(function (row) {
+        table.tBodies[0].appendChild(row);
+    });
+}
+
 populateEmployees();
 
 displayTimeSheetInfo();

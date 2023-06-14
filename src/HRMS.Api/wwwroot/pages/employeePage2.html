@@ -38,6 +38,18 @@
             left: 10px;
             z-index: 100;
         }
+
+        .table th i.fa-sort {
+            color: #ccc;
+        }
+
+        .table th.asc i {
+            transform: translateY(-50%) rotate(-90deg);
+        }
+
+        .table th.desc i {
+            transform: translateY(-50%) rotate(90deg);
+        }
     </style>
 </head>
 
@@ -50,9 +62,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Employee Name</th>
+                    <th onclick="sortEmployeeByNames()">
+                        <span> Employee Name </span>
+                        <i id="employeeNameSortIcon" class="fas fa-sort"></i>
+                    </th>
                     <th>Phone Number</th>
-                    <th>Position</th>
+                    <th onclick="sortEmployeeByPositions()">
+                        <span> Position</span>
+                        <i id="employeePositionSortIcon" class="fas fa-sort"></i>
+                    </th>
                     <th>Actions</th>
                 </tr>
             </thead>

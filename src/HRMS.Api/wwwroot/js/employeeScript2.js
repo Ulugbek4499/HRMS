@@ -136,6 +136,84 @@ createButton.addEventListener("click", handleCreateEmployee);
 const addNewEmployeeButton = document.getElementById("AddNewEmployee");
 addNewEmployeeButton.addEventListener("click", handleAddNewEmployee);
 
+function sortEmployeeByNames() {
+    var table = document.querySelector('.table');
+    var rows = Array.from(table.tBodies[0].rows);
+    var sortIcon = document.getElementById('employeeNameSortIcon');
+    var isAscending = sortIcon.classList.contains('asc');
+
+    rows.sort(function (a, b) {
+        var nameA = a.cells[0].textContent.trim().toUpperCase();
+        var nameB = b.cells[0].textContent.trim().toUpperCase();
+
+        if (nameA < nameB) {
+            return -1;
+        } else if (nameA > nameB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    if (!isAscending) {
+        rows.reverse();
+        sortIcon.classList.remove('desc');
+        sortIcon.classList.add('asc');
+    } else {
+        sortIcon.classList.remove('asc');
+        sortIcon.classList.add('desc');
+    }
+
+    while (table.tBodies[0].firstChild) {
+        table.tBodies[0].removeChild(table.tBodies[0].firstChild);
+    }
+
+    rows.forEach(function (row) {
+        table.tBodies[0].appendChild(row);
+    });
+}
+
+function sortEmployeeByPositions() {
+    var table = document.querySelector('.table');
+    var rows = Array.from(table.tBodies[0].rows);
+    var sortIcon = document.getElementById('employeePositionSortIcon');
+    var isAscending = sortIcon.classList.contains('asc');
+
+    rows.sort(function (a, b) {
+        var positionA = a.cells[2].textContent.trim().toUpperCase();
+        var positionB = b.cells[2].textContent.trim().toUpperCase();
+
+        if (positionA < positionB) {
+            return -1;
+        } else if (positionA > positionB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    if (!isAscending) {
+        rows.reverse();
+        sortIcon.classList.remove('desc');
+        sortIcon.classList.add('asc');
+    } else {
+        sortIcon.classList.remove('asc');
+        sortIcon.classList.add('desc');
+    }
+
+    while (table.tBodies[0].firstChild) {
+        table.tBodies[0].removeChild(table.tBodies[0].firstChild);
+    }
+
+    rows.forEach(function (row) {
+        table.tBodies[0].appendChild(row);
+    });
+}
+
+
+
+
 populatePositions();
 
 displayEmployeeInfo();
+
