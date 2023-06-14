@@ -18,21 +18,9 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class DepartmentsController : ApiControllerBase
     {
-
-        private readonly IAppCache _lazyCache;
-
-        private const string My_Key = "My_Key";
-
-        public DepartmentsController(IAppCache lazyCache)
-        {
-            _lazyCache = lazyCache;
-        }
-
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> PostDepartmentAsync(CreateDepartmentCommand command)
         {
-            _lazyCache.Remove(My_Key);
-
             return await Mediator.Send(command);
         }
 
@@ -59,8 +47,6 @@ namespace HRMS.Api.Controllers
         [HttpPut("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> UpdateDepartmentAsync(UpdateDepartmentCommand command)
         {
-            _lazyCache.Remove(My_Key);
-
             return await Mediator.Send(command);
         }
 
@@ -68,8 +54,6 @@ namespace HRMS.Api.Controllers
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> DeleteDepartmentAsync(Guid departmentId)
         {
-            _lazyCache.Remove(My_Key);
-
             return await Mediator.Send(new DeleteDepartmentCommand(departmentId));
         }
     }
