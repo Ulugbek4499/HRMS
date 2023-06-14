@@ -13,6 +13,7 @@ function createSalaryInfo(salaryInfo) {
         <tr>
             <td>${salaryInfo.name}</td>
             <td>${salaryInfo.positionName}</td>
+             <td>${salaryInfo.departmentName}</td>
             <td>${salaryInfo.fixedWorkingHours}</td>
             <td>${salaryInfo.actualWorkingHours}</td>
             <td>${salaryInfo.fixedSalary}</td>

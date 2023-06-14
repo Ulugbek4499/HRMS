@@ -33,6 +33,7 @@ namespace HRMS.Application.UseCases.SalaryInfo.Query
                 {
                     Name = empl.Name,
                     PositionName = empl.Position.Name,
+                    DepartmentName=empl.Position.Department.Name,
                     FixedWorkingHours = empl.Position.MonthlyWorkingHours,
                     FixedSalary = empl.Position.Salary,
                     ActualWorkingHours = TotalTime,
