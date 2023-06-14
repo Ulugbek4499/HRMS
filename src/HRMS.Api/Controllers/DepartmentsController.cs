@@ -1,11 +1,14 @@
 ﻿using HRMS.Api.Filters;
+using HRMS.Application.Common.Models;
 using HRMS.Application.UseCases.Departments.Commands.CreateDepartment;
 using HRMS.Application.UseCases.Departments.Commands.DelateDepartment;
 using HRMS.Application.UseCases.Departments.Commands.UpdateDepartment;
 using HRMS.Application.UseCases.Departments.Models;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartment;
 using HRMS.Application.UseCases.Departments.Queries.GetDepartments;
+using HRMS.Application.UseCases.Departments.Queries.GetDepartmentsWithPagination;
 using LazyCache;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 
@@ -47,6 +50,11 @@ namespace HRMS.Api.Controllers
                 return await Mediator.Send(new GetDepartmentsQuery());
         }
 
+        [HttpGet("[action]")]
+        public async ValueTask<ActionResult<PaginatedList<DepartmentDto>>> GetPackagesWithPaginated([FromQuery] GetDepartmentsWithPaginationQuery query)
+        {
+            return await Mediator.Send(query);
+        }
 
         [HttpPut("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> UpdateDepartmentAsync(UpdateDepartmentCommand command)

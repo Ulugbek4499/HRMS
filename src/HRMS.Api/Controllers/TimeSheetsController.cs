@@ -1,10 +1,12 @@
 ﻿using HRMS.Api.Filters;
+using HRMS.Application.Common.Models;
 using HRMS.Application.UseCases.TimeSheets.Commands.CreateTimeSheet;
 using HRMS.Application.UseCases.TimeSheets.Commands.DeleteTimeSheet;
 using HRMS.Application.UseCases.TimeSheets.Commands.UpdateTimeSheet;
 using HRMS.Application.UseCases.TimeSheets.Models;
 using HRMS.Application.UseCases.TimeSheets.Queries.GetTimeSheet;
 using HRMS.Application.UseCases.TimeSheets.Queries.GetTimeSheets;
+using HRMS.Application.UseCases.TimeSheets.Queries.GetTimeSheetsWithPagination;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.Api.Controllers
@@ -32,6 +34,13 @@ namespace HRMS.Api.Controllers
         public async ValueTask<ActionResult<TimeSheetDto[]>> GetAllTimeSheet()
         {
             return await Mediator.Send(new GetTimeSheetsQuery());
+        }
+
+        [HttpGet("[action]")]
+        public async ValueTask<PaginatedList<TimeSheetDto>> GetTimeSheetsWithPagination(
+            [FromQuery] GetTimeSheetsWithPaginationQuery query)
+        {
+            return await Mediator.Send(query);
         }
 
      //   [RemoveLazyCache]

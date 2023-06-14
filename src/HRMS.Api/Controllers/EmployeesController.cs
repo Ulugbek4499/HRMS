@@ -1,10 +1,12 @@
 ﻿using HRMS.Api.Filters;
+using HRMS.Application.Common.Models;
 using HRMS.Application.UseCases.Employees.Commands.CreateEmployee;
 using HRMS.Application.UseCases.Employees.Commands.DeleteEmployee;
 using HRMS.Application.UseCases.Employees.Commands.UpdateEmployee;
 using HRMS.Application.UseCases.Employees.Models;
 using HRMS.Application.UseCases.Employees.Queries.GetEmployee;
 using HRMS.Application.UseCases.Employees.Queries.GetEmployees;
+using HRMS.Application.UseCases.Employees.Queries.GetEmployeesWithPagination;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -33,6 +35,14 @@ namespace HRMS.Api.Controllers
         {
             return await Mediator.Send(new GetEmployeesQuery());
         }
+
+        [HttpGet("[action]")]
+        public async ValueTask<ActionResult<PaginatedList<EmployeeDto>>> GetEmployeesWithPaginatedList(
+            [FromQuery] GetEmployeesWithPaginationQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
 
        // [RemoveLazyCache]
         [HttpPost("updateEmployee")]

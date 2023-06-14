@@ -1,10 +1,12 @@
 ﻿using HRMS.Api.Filters;
+using HRMS.Application.Common.Models;
 using HRMS.Application.UseCases.Positions.Commands.CreatePosition;
 using HRMS.Application.UseCases.Positions.Commands.DeletePosition;
 using HRMS.Application.UseCases.Positions.Commands.UpdatePosition;
 using HRMS.Application.UseCases.Positions.Models;
 using HRMS.Application.UseCases.Positions.Queries.GetPosition;
 using HRMS.Application.UseCases.Positions.Queries.GetPositions;
+using HRMS.Application.UseCases.Positions.Queries.GetPositionsWithPagination;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.Api.Controllers
@@ -31,6 +33,13 @@ namespace HRMS.Api.Controllers
         public async ValueTask<ActionResult<PositionDto[]>> GetAllPosition()
         {
             return await Mediator.Send(new GetPositionsQuery());
+        }
+
+        [HttpGet("[action]")]
+        public async ValueTask<ActionResult<PaginatedList<PositionDto>>> GetPostionsWithPagination(
+            [FromQuery] GetPositionsWithPaginationQuery query)
+        {
+            return await Mediator.Send(query);
         }
 
       //  [RemoveLazyCache]
