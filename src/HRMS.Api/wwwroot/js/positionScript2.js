@@ -122,7 +122,7 @@ function handleCreatePosition() {
     createPosition();
 }
 
-ffunction handleEditPosition(event) {
+function handleEditPosition(event) {
     event.preventDefault();
 
     const editPositionForm = document.getElementById("EditCreatePosition");

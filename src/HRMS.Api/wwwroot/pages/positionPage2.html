@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -159,6 +159,182 @@
             </div>
 
         </form>
+    </div>
+
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/positionScript2.js"></script>
+</body>
+
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        #CreatePositionForm,
+        #EditPositionForm {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .bg-yellow {
+            background-color: yellow;
+        }
+
+        .bg-red {
+            background-color: red;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 100;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+            .button-container .search-container {
+                display: flex;
+                align-items: center;
+            }
+
+                .button-container .search-container input[type="text"] {
+                    margin-right: 10px;
+                }
+
+                .button-container .search-container button {
+                    margin-left: 0;
+                }
+    </style>
+</head>
+
+<body>
+    <a href="welcomepage.html" class="btn btn-primary home-button" style="background-color: gray; color: white;">Home</a>
+
+    <div class="container">
+        <h1>Positions</h1>
+
+        <div class="button-container" style="position: relative">
+
+            <button id="AddNewPosition" class="btn btn-primary">Add New Position</button>
+
+            <div class="search-container" style="position: absolute; right: 0px; display: flex; align-items: center; gap: 5px">
+                <input type="search" id="searchInput" placeholder="Search...">
+                <button onclick="searchTable()" class="btn btn-primary m-0">Search</button>
+            </div>
+
+        </div>
+
+        <div id="CreatePositionForm" style="padding-top: 50px">
+            <div class="form-group">
+                <label for="PositionName">Position Name</label>
+                <input type="text" class="form-control" id="PositionName" placeholder="Enter position name">
+            </div>
+
+            <div class="form-group">
+                <label for="Salary">Salary</label>
+                <input type="number" class="form-control" id="Salary" placeholder="Enter salary">
+            </div>
+
+            <div class="form-group">
+                <label for="MonthlyWorkingHours">Monthly Working Hours</label>
+                <input type="number" class="form-control" id="MonthlyWorkingHours" placeholder="Enter monthly working hours">
+            </div>
+
+            <div class="form-group">
+                <label for="DepartmentId">Department</label>
+                <select class="form-control" id="DepartmentId"></select>
+            </div>
+
+            <button id="CreatePosition" class="btn btn-primary">Create</button>
+        </div>
+
+        <form method="post" action="/api/Positions/updatePosition">
+            <div id="EditPositionForm">
+                <div class="form-group d-none">
+                    <label for="InputEditPositionId">Position Id</label>
+                    <input name="Id" type="text" class="form-control" id="InputEditPositionId" placeholder="ID">
+                </div>
+
+                <div class="form-group">
+                    <label for="EditPositionName">Position Name</label>
+                    <input name="Name" type="text" class="form-control" id="EditPositionName" placeholder="Enter position name">
+                </div>
+
+                <div class="form-group">
+                    <label for="EditSalary">Salary</label>
+                    <input name="Salary" type="number" class="form-control" id="EditSalary" placeholder="Salary">
+                </div>
+
+                <div class="form-group">
+                    <label for="EditMonthlyWorkingHours">Monthly Working Hours</label>
+                    <input name="MonthlyWorkingHours" type="number" class="form-control" id="EditMonthlyWorkingHours" placeholder="Monthly Working Hours">
+                </div>
+
+                <div class="form-group">
+                    <label name="DepartmentId" for="EditDepartmentId">Department</label>
+                    <select name="DepartmentId" class="form-control" id="EditDepartmentId"></select>
+                </div>
+                <button type="submit" id="EditCreatePosition" class="btn btn-primary btn-success">Update</button>
+            </div>
+
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th onclick="sortPositionByNames()">
+                        <span> Position Name </span>
+                        <i id="positionNameSortIcon" class="fas fa-sort"></i>
+                    </th>
+                    <th onclick="sortPositionBySalary()">
+                        <span> Salary </span>
+                        <i id="positionSalarySortIcon" class="fas fa-sort"></i>
+                    </th>
+                    <th onclick="sortPositionByHours()">
+                        <span>Monthly Working Hours </span>
+                        <i id="positionHoursSortIcon" class="fas fa-sort"></i>
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="PositionTable"></tbody>
+        </table>
+
+
+
     </div>
 
     <script src="../js/jquery-3.3.1.slim.min.js"></script>
