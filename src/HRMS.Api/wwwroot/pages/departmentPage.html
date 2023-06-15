@@ -68,11 +68,20 @@
     <div class="container">
         <h1>Departments</h1>
 
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <input id="PostDepartment" class="form-control" placeholder="Enter department name">
+            </div>
+            <div class="col-md-6">
+                <button onclick="postDepartment()" class="btn btn-primary">Add New Department</button>
+            </div>
+        </div>
 
         <div>
             <input type="text" id="searchInput" placeholder="Search...">
             <button onclick="searchTable()">Search</button>
         </div>
+
 
 
         <table class="table">
@@ -87,15 +96,6 @@
             </thead>
             <tbody id="DepartmentTable"></tbody>
         </table>
-
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <input id="PostDepartment" class="form-control" placeholder="Enter department name">
-            </div>
-            <div class="col-md-6">
-                <button onclick="postDepartment()" class="btn btn-primary">Add New Department</button>
-            </div>
-        </div>
     </div>
 
     <script src="../js/jquery-3.3.1.slim.min.js"></script>
