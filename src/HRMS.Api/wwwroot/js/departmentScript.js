@@ -1,5 +1,4 @@
-﻿
-async function getDepartmentInfo() {
+﻿async function getDepartmentInfo() {
     const departmentInfo = await fetch('/api/Departments/GetAllDepartment', {
         method: 'GET',
         mode: 'cors'
