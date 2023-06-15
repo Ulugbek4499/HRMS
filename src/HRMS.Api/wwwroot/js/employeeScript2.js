@@ -210,6 +210,30 @@ function sortEmployeeByPositions() {
     });
 }
 
+
+function searchTable() {
+    var searchInput = document.getElementById('searchInput').value.toLowerCase();
+    var table = document.querySelector('.table');
+    var rows = Array.from(table.tBodies[0].rows);
+
+    rows.forEach(function (row) {
+        var matchFound = false;
+        Array.from(row.cells).forEach(function (cell) {
+            var cellText = cell.textContent.toLowerCase();
+            if (cellText.includes(searchInput)) {
+                matchFound = true;
+                return;
+            }
+        });
+
+        if (matchFound) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
 populatePositions();
 
 displayEmployeeInfo();
