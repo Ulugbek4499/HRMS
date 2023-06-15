@@ -210,9 +210,6 @@ function sortEmployeeByPositions() {
     });
 }
 
-
-
-
 populatePositions();
 
 displayEmployeeInfo();
