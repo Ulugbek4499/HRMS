@@ -18,22 +18,26 @@
             text-align: center;
         }
 
-        .table th,
-        .table td {
-            vertical-align: middle;
-        }
-
-        #CreateTimeSheetForm,
-        #EditTimeSheetForm {
-            margin-top: 30px;
-        }
-
-        .form-group label {
-            font-weight: bold;
-        }
-
         .btn-primary {
-            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        #CreatePositionForm,
+        #EditPositionForm {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .bg-yellow {
+            background-color: yellow;
+        }
+
+        .bg-red {
+            background-color: red;
         }
 
         .home-button {
@@ -42,6 +46,25 @@
             left: 10px;
             z-index: 100;
         }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+            .button-container .search-container {
+                display: flex;
+                align-items: center;
+            }
+
+                .button-container .search-container input[type="text"] {
+                    margin-right: 10px;
+                }
+
+                .button-container .search-container button {
+                    margin-left: 0;
+                }
     </style>
 </head>
 
@@ -51,38 +74,18 @@
     <div class="container">
         <h1>TimeSheet</h1>
 
-        <button id="AddNewTimeSheet" class="btn btn-primary">Add New TimeSheet</button>
+        <div class="button-container" style="position: relative">
 
-        <div>
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button onclick="searchTable()">Search</button>
+            <button id="AddNewTimeSheet" class="btn btn-primary">Add New Info</button>
+
+            <div class="search-container" style="position: absolute; right: 0px; display: flex; align-items: center; gap: 5px">
+                <input type="search" id="searchInput" placeholder="Search...">
+                <button onclick="searchTable()" class="btn btn-primary m-0">Search</button>
+            </div>
+
         </div>
 
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th onclick="sortTimeSheetByEmployees()">
-                        <span> Employee Name </span>
-                        <i id="timeSheetEmployeeSortIcon" class="fas fa-sort"></i>
-                    </th>
-                    <th onclick="sortTimeSheetByDays()">
-                        <span> Working Day </span>
-                        <i id="timeSheetDaySortIcon" class="fas fa-sort"></i>
-                    </th>
-                    <th onclick="sortTimeSheetByHours()">
-                        <span>Worked Hours </span>
-                        <i id="timeSheetHoursSortIcon" class="fas fa-sort"></i>
-                    </th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="TimeSheetTable"></tbody>
-        </table>
-
-
-
-        <div id="CreateTimeSheetForm" style="display: none;">
+        <div id="CreateTimeSheetForm" style="display: none; padding-top: 25px">
             <div class="form-group">
                 <label for="EmployeeId">Employee</label>
                 <select class="form-control" id="EmployeeId"></select>
@@ -126,11 +129,36 @@
                 <button type="submit" id="EditCreateTimeSheet" class="btn btn-primary btn-success">Update</button>
             </div>
         </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th onclick="sortTimeSheetByEmployees()">
+                        <span> Employee Name </span>
+                        <i id="timeSheetEmployeeSortIcon" class="fas fa-sort"></i>
+                    </th>
+                    <th onclick="sortTimeSheetByDays()">
+                        <span> Working Day </span>
+                        <i id="timeSheetDaySortIcon" class="fas fa-sort"></i>
+                    </th>
+                    <th onclick="sortTimeSheetByHours()">
+                        <span>Worked Hours </span>
+                        <i id="timeSheetHoursSortIcon" class="fas fa-sort"></i>
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="TimeSheetTable"></tbody>
+        </table>
+
+
+
+
     </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/timeSheetScript.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../js/timeSheetScript.js"></script>
 </body>
 
 </html>

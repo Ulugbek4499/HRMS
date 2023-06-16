@@ -10,13 +10,6 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
-        .home-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 100;
-        }
-
         .container {
             margin-top: 50px;
         }
@@ -26,39 +19,46 @@
             text-align: center;
         }
 
-        .form-control {
-            width: 100%;
-            height: calc(1.5em + 0.75rem + 2px);
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            border-radius: 0.25rem;
-            border-color: #ced4da;
-        }
-
         .btn-primary {
-            padding: 0.375rem 1rem;
-            font-size: 1rem;
-            border-radius: 0.25rem;
+            margin-bottom: 20px;
         }
 
-        .table th {
-            position: relative;
-            cursor: pointer;
-            padding-right: 20px;
+        .form-control {
+            margin-bottom: 15px;
         }
 
-            .table th span {
-                display: inline-block;
+        #CreateEmployeeForm,
+        #EditEmployeeForm {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 100;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+            .button-container .search-container {
+                display: flex;
+                align-items: center;
             }
 
-            .table th i {
-                position: absolute;
-                top: 50%;
-                right: 5px;
-                transform: translateY(-50%);
-                transition: transform 0.2s ease-in-out;
-            }
+                .button-container .search-container input[type="text"] {
+                    margin-right: 10px;
+                }
+
+                .button-container .search-container button {
+                    margin-left: 0;
+                }
+
     </style>
 </head>
 
@@ -68,23 +68,24 @@
     <div class="container">
         <h1>Departments</h1>
 
-        <div class="row mt-3">
+        <div class="row mt-3" style="position: relative">
+
             <div class="col-md-6">
                 <input id="PostDepartment" class="form-control" placeholder="Enter department name">
             </div>
+
             <div class="col-md-6">
                 <button onclick="postDepartment()" class="btn btn-primary">Add New Department</button>
             </div>
+
+        <div class="search-container" style="position: absolute; right: 0px; display: flex; align-items: center; gap: 5px">
+            <input type="search" id="searchInput" placeholder="Search...">
+            <button onclick="searchTable()" class="btn btn-primary m-0">Search</button>
         </div>
 
-        <div>
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button onclick="searchTable()">Search</button>
         </div>
 
-
-
-        <table class="table">
+        <table class="table" style="padding-top: 25px">
             <thead>
                 <tr>
                     <th onclick="sortDepartments()">
