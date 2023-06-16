@@ -15,7 +15,6 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class TimeSheetsController : ApiControllerBase
     {
-       // [RemoveLazyCache]
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<TimeSheetDto>> PostTimeSheetAsync(CreateTimeSheetCommand command)
         {
@@ -29,7 +28,6 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetTimeSheetQuery(TimeSheetId));
         }
 
-     //   [AddLazyCache]
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<TimeSheetDto[]>> GetAllTimeSheet()
         {
@@ -43,7 +41,6 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(query);
         }
 
-     //   [RemoveLazyCache]
         [HttpPost("updateTimeSheet")]
         public async ValueTask<ActionResult<TimeSheetDto>> UpdateTimeSheetAsync([FromForm] UpdateTimeSheetCommand command)
         {
@@ -52,11 +49,8 @@ namespace HRMS.Api.Controllers
                 return NoContent();
             }
             return NoContent();
-
-            //return await Mediator.Send(command);
         }
 
-     //   [RemoveLazyCache]
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<TimeSheetDto>> DeleteTimeSheetAsync(Guid TimeSheetId)
         {

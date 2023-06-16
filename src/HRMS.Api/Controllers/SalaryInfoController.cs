@@ -9,7 +9,6 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class SalaryInfoController : ApiControllerBase
     {
-      //  [ETag]
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<SalaryInfoDto[]>> GetAllSalaryInfo()
         {

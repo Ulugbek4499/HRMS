@@ -14,7 +14,6 @@ namespace HRMS.Api.Controllers
     [ApiController]
     public class EmployeesController : ApiControllerBase
     {
-       // [RemoveLazyCache]
         [HttpPost("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> PostEmployeeAsync(CreateEmployeeCommand command)
         {
@@ -27,7 +26,6 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetEmployeeQuery(EmployeeId));
         }
 
-        //[AddLazyCache]
         [HttpGet("[action]")]
         public async ValueTask<ActionResult<EmployeeDto[]>> GetAllEmployee()
         {
@@ -41,8 +39,6 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(query);
         }
 
-
-       // [RemoveLazyCache]
         [HttpPost("updateEmployee")]
         public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
         {
@@ -51,11 +47,8 @@ namespace HRMS.Api.Controllers
                 return NoContent();
             }
             return NoContent();
-
-            //return await Mediator.Send(command);
         }
 
-      //  [RemoveLazyCache]
         [HttpDelete("[action]")]
         public async ValueTask<ActionResult<EmployeeDto>> DeleteEmployeeAsync(Guid EmployeeId)
         {
