@@ -1,5 +1,4 @@
-﻿
-async function getTimeSheetInfo() {
+﻿async function getTimeSheetInfo() {
     const timeSheetInfo = await fetch(`/api/TimeSheets/GetAllTimeSheet`, {
         method: 'GET',
         mode: 'cors',
@@ -177,6 +176,7 @@ function sortTimeSheetByEmployees() {
         table.tBodies[0].appendChild(row);
     });
 }
+
 function sortTimeSheetByDays() {
     var table = document.querySelector('.table');
     var rows = Array.from(table.tBodies[0].rows);
@@ -273,7 +273,6 @@ function searchTable() {
         }
     });
 }
-
 
 populateEmployees();
 

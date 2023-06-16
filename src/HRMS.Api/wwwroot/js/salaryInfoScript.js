@@ -1,4 +1,3 @@
-
 async function getSalaryInfo() {
     const salaryInfo = await fetch(`/api/SalaryInfo/GetAllSalaryInfo`, {
         method: 'GET',

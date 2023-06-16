@@ -38,7 +38,6 @@ namespace HRMS.Infrastructure.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
             optionsBuilder.AddInterceptors(_interceptor);
         }
     }

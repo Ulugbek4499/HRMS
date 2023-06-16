@@ -117,6 +117,7 @@ async function updateDepartment(department_id) {
 
 let isAscending = true;
 const departmentNameHeader = document.querySelector('.table th:first-child');
+
 departmentNameHeader.addEventListener('click', () => {
     isAscending = !isAscending;
     displayDepartmentInfo();

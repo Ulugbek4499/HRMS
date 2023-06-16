@@ -1,5 +1,4 @@
-﻿
-async function getPositionInfo() {
+﻿async function getPositionInfo() {
     const positionInfo = await fetch(`/api/Positions/GetAllPosition`, {
         method: 'GET',
         mode: 'cors'
@@ -121,6 +120,7 @@ function editPosition(position_id) {
 function handleCreatePosition() {
     createPosition();
 }
+
 
 function handleEditPosition() {
     const editPositionForm = document.getElementById("EditPositionForm");

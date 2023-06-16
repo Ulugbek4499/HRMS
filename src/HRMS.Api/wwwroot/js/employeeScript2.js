@@ -1,5 +1,4 @@
-﻿
-async function getEmployeeInfo() {
+﻿async function getEmployeeInfo() {
     const employeeInfo = await fetch(`/api/Employees/GetAllEmployee`, {
         method: 'GET',
         mode: 'cors'
@@ -209,7 +208,6 @@ function sortEmployeeByPositions() {
         table.tBodies[0].appendChild(row);
     });
 }
-
 
 function searchTable() {
     var searchInput = document.getElementById('searchInput').value.toLowerCase();
