@@ -45,7 +45,7 @@ namespace HRMS.Api.Controllers
         [HttpPut("[action]")]
         public async ValueTask<ActionResult<DepartmentDto>> UpdateDepartmentAsync(UpdateDepartmentCommand command)
         {
-            return await Mediator.Send(command);
+           return await Mediator.Send(command);
         }
 
 

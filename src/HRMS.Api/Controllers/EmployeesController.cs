@@ -46,8 +46,13 @@ namespace HRMS.Api.Controllers
         [HttpPost("updateEmployee")]
         public async ValueTask<ActionResult<EmployeeDto>> UpdateEmployeeAsync([FromForm] UpdateEmployeeCommand command)
         {
-          
-            return await Mediator.Send(command);
+            if ((await Mediator.Send(command)) is not null)
+            {
+                return NoContent();
+            }
+            return NoContent();
+
+            //return await Mediator.Send(command);
         }
 
       //  [RemoveLazyCache]

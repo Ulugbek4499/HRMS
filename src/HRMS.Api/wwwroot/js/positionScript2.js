@@ -122,16 +122,12 @@ function handleCreatePosition() {
     createPosition();
 }
 
-function handleEditPosition(event) {
-    event.preventDefault();
-
-    const editPositionForm = document.getElementById("EditCreatePosition");
-    editPositionForm.style.display = "block";
+function handleEditPosition() {
+    const editPositionForm = document.getElementById("EditPositionForm");
+    editPositionForm.style.display = "none";
 
     const editPositionButton = document.getElementById("EditCreatePosition");
     editPositionButton.style.display = "none";
-
-    location.reload(); // Reload the page
 }
 
 function handleAddNewPosition() {
@@ -141,9 +137,6 @@ function handleAddNewPosition() {
     const addNewPositionButton = document.getElementById("AddNewPosition");
     addNewPositionButton.style.display = "none";
 }
-
-const editPositionForm = document.getElementById("EditPositionForm");
-editPositionForm.addEventListener("submit", handleEditPosition);
 
 const updateButton = document.getElementById("EditCreatePosition");
 updateButton.addEventListener("click", displayPositionInfo);

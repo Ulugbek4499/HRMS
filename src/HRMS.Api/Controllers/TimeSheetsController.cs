@@ -47,7 +47,13 @@ namespace HRMS.Api.Controllers
         [HttpPost("updateTimeSheet")]
         public async ValueTask<ActionResult<TimeSheetDto>> UpdateTimeSheetAsync([FromForm] UpdateTimeSheetCommand command)
         {
-            return await Mediator.Send(command);
+            if ((await Mediator.Send(command)) is not null)
+            {
+                return NoContent();
+            }
+            return NoContent();
+
+            //return await Mediator.Send(command);
         }
 
      //   [RemoveLazyCache]

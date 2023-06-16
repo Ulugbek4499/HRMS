@@ -46,8 +46,14 @@ namespace HRMS.Api.Controllers
         [HttpPost("updatePosition")]
         public async ValueTask<ActionResult<PositionDto>> UpdatePositionAsync([FromForm] UpdatePositionCommand command)
         {
-           
-            return await Mediator.Send(command);
+
+            if ((await Mediator.Send(command)) is not null)
+            {
+                return NoContent();
+            }
+            return NoContent();
+
+           // return await Mediator.Send(command);
         }
 
       //  [RemoveLazyCache]
