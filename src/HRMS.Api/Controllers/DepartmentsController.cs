@@ -28,7 +28,6 @@ namespace HRMS.Api.Controllers
             return await Mediator.Send(new GetDepartmentQuery(departmentId));
         }
 
-        [LazyCache(10, 30)]
         [HttpGet("[action]")]
         [EnableRateLimiting("TokenBucket")]
         public async ValueTask<ActionResult<DepartmentDto[]>> GetAllDepartment()
