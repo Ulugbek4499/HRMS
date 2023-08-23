@@ -7,6 +7,7 @@ using Serilog;
 
 public class Program
 {
+
     private static void Main(string[] args)
     {
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
